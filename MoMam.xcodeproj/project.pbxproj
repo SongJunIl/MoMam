@@ -16,6 +16,8 @@
 		8E4105191D93D8270000B20E /* MoMamAddButtonDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4105171D93D8270000B20E /* MoMamAddButtonDetailViewController.xib */; };
 		8E41051D1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E41051B1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m */; };
 		8E41051E1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E41051C1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib */; };
+		8EB685261D9E9BC80016E7F9 /* MoMamMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB685241D9E9BC80016E7F9 /* MoMamMyWalletViewController.m */; };
+		8EB685271D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EB685251D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib */; };
 		8EBABABE1D8970DD004D402E /* MoMamCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBABABD1D8970DD004D402E /* MoMamCalendarView.m */; };
 		8EBABAC01D897188004D402E /* MoMamCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EBABABF1D897188004D402E /* MoMamCalendarView.xib */; };
 		8EEAF6151D83E3E500665458 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAF6141D83E3E500665458 /* main.m */; };
@@ -41,6 +43,9 @@
 		8E41051A1D93ED4C0000B20E /* MoMamCalendarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamCalendarDetailViewController.h; sourceTree = "<group>"; };
 		8E41051B1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamCalendarDetailViewController.m; sourceTree = "<group>"; };
 		8E41051C1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamCalendarDetailViewController.xib; sourceTree = "<group>"; };
+		8EB685231D9E9BC80016E7F9 /* MoMamMyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamMyWalletViewController.h; sourceTree = "<group>"; };
+		8EB685241D9E9BC80016E7F9 /* MoMamMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamMyWalletViewController.m; sourceTree = "<group>"; };
+		8EB685251D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamMyWalletViewController.xib; sourceTree = "<group>"; };
 		8EBABABC1D8970DD004D402E /* MoMamCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamCalendarView.h; sourceTree = "<group>"; };
 		8EBABABD1D8970DD004D402E /* MoMamCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamCalendarView.m; sourceTree = "<group>"; };
 		8EBABABF1D897188004D402E /* MoMamCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamCalendarView.xib; sourceTree = "<group>"; };
@@ -112,6 +117,9 @@
 				8E41051A1D93ED4C0000B20E /* MoMamCalendarDetailViewController.h */,
 				8E41051B1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m */,
 				8E41051C1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib */,
+				8EB685231D9E9BC80016E7F9 /* MoMamMyWalletViewController.h */,
+				8EB685241D9E9BC80016E7F9 /* MoMamMyWalletViewController.m */,
+				8EB685251D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib */,
 				8EEAF6161D83E3E500665458 /* AppDelegate.h */,
 				8EEAF6171D83E3E500665458 /* AppDelegate.m */,
 				8EEAF61F1D83E3E500665458 /* Assets.xcassets */,
@@ -204,6 +212,7 @@
 				8EEAF62D1D83E58F00665458 /* Default@2x.png in Resources */,
 				8E3FB48B1D86E9EE001E9FD2 /* MoMamDeTail.xib in Resources */,
 				8EEAF62B1D83E4F000665458 /* Launch Screen.storyboard in Resources */,
+				8EB685271D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib in Resources */,
 				8EEAF6201D83E3E500665458 /* Assets.xcassets in Resources */,
 				8E3FB4861D86E8EE001E9FD2 /* MoMamMainViewController.xib in Resources */,
 				8E4105191D93D8270000B20E /* MoMamAddButtonDetailViewController.xib in Resources */,
@@ -270,6 +279,7 @@
 				8E3FB4851D86E8EE001E9FD2 /* MoMamMainViewController.m in Sources */,
 				8E3FB4891D86E988001E9FD2 /* MoMamDeTail.m in Sources */,
 				8EEAF6151D83E3E500665458 /* main.m in Sources */,
+				8EB685261D9E9BC80016E7F9 /* MoMamMyWalletViewController.m in Sources */,
 				8EBABABE1D8970DD004D402E /* MoMamCalendarView.m in Sources */,
 				8E4105181D93D8270000B20E /* MoMamAddButtonDetailViewController.m in Sources */,
 			);
