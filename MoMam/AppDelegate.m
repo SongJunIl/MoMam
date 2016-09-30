@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MoMamMainViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,26 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
+    
+    //메인 뷰 컨트롤러
+    MoMamMainViewController *mainViewController = [[MoMamMainViewController alloc] initWithNibName:@"MoMamMainViewController" bundle:[NSBundle mainBundle]];
+ 
+//    //메인View 네비게이션
+//    UINavigationController *mainNavi = [[UINavigationController alloc]initWithRootViewController:mainView];
+
+    
+    //메인View 탭바
+    UITabBarController *mainTabBar = [[UITabBarController alloc]init];
+    mainTabBar.viewControllers = @[mainViewController];
+    mainTabBar.tabBar.backgroundColor = [UIColor whiteColor];
+    
+    self.window.rootViewController=mainTabBar;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

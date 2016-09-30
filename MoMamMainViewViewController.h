@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MoMamMainViewViewController.h
 //  MoMam
 //
 //  Created by 송준일 on 2016. 9. 10..
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MoMamMainViewViewController : UIViewController
 
 @end
-

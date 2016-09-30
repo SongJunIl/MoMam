@@ -7,25 +7,51 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		586FB20B9549747EBF39941D /* Pods_MoMam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C308C9E17793A46A41930DC /* Pods_MoMam.framework */; };
+		8E3FB4851D86E8EE001E9FD2 /* MoMamMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FB4831D86E8EE001E9FD2 /* MoMamMainViewController.m */; };
+		8E3FB4861D86E8EE001E9FD2 /* MoMamMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3FB4841D86E8EE001E9FD2 /* MoMamMainViewController.xib */; };
+		8E3FB4891D86E988001E9FD2 /* MoMamDeTail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FB4881D86E988001E9FD2 /* MoMamDeTail.m */; };
+		8E3FB48B1D86E9EE001E9FD2 /* MoMamDeTail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3FB48A1D86E9EE001E9FD2 /* MoMamDeTail.xib */; };
+		8E4105181D93D8270000B20E /* MoMamAddButtonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4105161D93D8270000B20E /* MoMamAddButtonDetailViewController.m */; };
+		8E4105191D93D8270000B20E /* MoMamAddButtonDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4105171D93D8270000B20E /* MoMamAddButtonDetailViewController.xib */; };
+		8E41051D1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E41051B1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m */; };
+		8E41051E1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E41051C1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib */; };
+		8EBABABE1D8970DD004D402E /* MoMamCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBABABD1D8970DD004D402E /* MoMamCalendarView.m */; };
+		8EBABAC01D897188004D402E /* MoMamCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EBABABF1D897188004D402E /* MoMamCalendarView.xib */; };
 		8EEAF6151D83E3E500665458 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAF6141D83E3E500665458 /* main.m */; };
 		8EEAF6181D83E3E500665458 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAF6171D83E3E500665458 /* AppDelegate.m */; };
-		8EEAF61B1D83E3E500665458 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAF61A1D83E3E500665458 /* ViewController.m */; };
-		8EEAF61E1D83E3E500665458 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EEAF61C1D83E3E500665458 /* Main.storyboard */; };
 		8EEAF6201D83E3E500665458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEAF61F1D83E3E500665458 /* Assets.xcassets */; };
-		8EEAF6231D83E3E500665458 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EEAF6211D83E3E500665458 /* LaunchScreen.storyboard */; };
+		8EEAF62B1D83E4F000665458 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EEAF62A1D83E4F000665458 /* Launch Screen.storyboard */; };
+		8EEAF62D1D83E58F00665458 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEAF62C1D83E58F00665458 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07B08BD2F5DEC36E36CB4604 /* Pods-MoMam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoMam/Pods-MoMam.debug.xcconfig"; sourceTree = "<group>"; };
+		283EF74DF8616AB87C86FD1E /* Pods-MoMam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMam.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoMam/Pods-MoMam.release.xcconfig"; sourceTree = "<group>"; };
+		2C308C9E17793A46A41930DC /* Pods_MoMam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoMam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E3FB4821D86E8EE001E9FD2 /* MoMamMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamMainViewController.h; sourceTree = SOURCE_ROOT; };
+		8E3FB4831D86E8EE001E9FD2 /* MoMamMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamMainViewController.m; sourceTree = SOURCE_ROOT; };
+		8E3FB4841D86E8EE001E9FD2 /* MoMamMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamMainViewController.xib; sourceTree = SOURCE_ROOT; };
+		8E3FB4871D86E988001E9FD2 /* MoMamDeTail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamDeTail.h; sourceTree = "<group>"; };
+		8E3FB4881D86E988001E9FD2 /* MoMamDeTail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamDeTail.m; sourceTree = "<group>"; };
+		8E3FB48A1D86E9EE001E9FD2 /* MoMamDeTail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamDeTail.xib; sourceTree = "<group>"; };
+		8E4105151D93D8270000B20E /* MoMamAddButtonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamAddButtonDetailViewController.h; sourceTree = "<group>"; };
+		8E4105161D93D8270000B20E /* MoMamAddButtonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamAddButtonDetailViewController.m; sourceTree = "<group>"; };
+		8E4105171D93D8270000B20E /* MoMamAddButtonDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamAddButtonDetailViewController.xib; sourceTree = "<group>"; };
+		8E41051A1D93ED4C0000B20E /* MoMamCalendarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamCalendarDetailViewController.h; sourceTree = "<group>"; };
+		8E41051B1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamCalendarDetailViewController.m; sourceTree = "<group>"; };
+		8E41051C1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamCalendarDetailViewController.xib; sourceTree = "<group>"; };
+		8EBABABC1D8970DD004D402E /* MoMamCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamCalendarView.h; sourceTree = "<group>"; };
+		8EBABABD1D8970DD004D402E /* MoMamCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamCalendarView.m; sourceTree = "<group>"; };
+		8EBABABF1D897188004D402E /* MoMamCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamCalendarView.xib; sourceTree = "<group>"; };
 		8EEAF6101D83E3E500665458 /* MoMam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEAF6141D83E3E500665458 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8EEAF6161D83E3E500665458 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8EEAF6171D83E3E500665458 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8EEAF6191D83E3E500665458 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8EEAF61A1D83E3E500665458 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8EEAF61D1D83E3E500665458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8EEAF61F1D83E3E500665458 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8EEAF6221D83E3E500665458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EEAF6241D83E3E500665458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EEAF62A1D83E4F000665458 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		8EEAF62C1D83E58F00665458 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +59,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				586FB20B9549747EBF39941D /* Pods_MoMam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53F084A137F31A0BFDE07DF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C308C9E17793A46A41930DC /* Pods_MoMam.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8EEAF6071D83E3E500665458 = {
 			isa = PBXGroup;
 			children = (
+				8EEAF62A1D83E4F000665458 /* Launch Screen.storyboard */,
+				8EEAF62C1D83E58F00665458 /* Default@2x.png */,
 				8EEAF6121D83E3E500665458 /* MoMam */,
 				8EEAF6111D83E3E500665458 /* Products */,
+				F139896D5748D0FE6188F3E6 /* Pods */,
+				53F084A137F31A0BFDE07DF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +97,24 @@
 		8EEAF6121D83E3E500665458 /* MoMam */ = {
 			isa = PBXGroup;
 			children = (
+				8E3FB4821D86E8EE001E9FD2 /* MoMamMainViewController.h */,
+				8E3FB4831D86E8EE001E9FD2 /* MoMamMainViewController.m */,
+				8E3FB4841D86E8EE001E9FD2 /* MoMamMainViewController.xib */,
+				8E3FB4871D86E988001E9FD2 /* MoMamDeTail.h */,
+				8E3FB4881D86E988001E9FD2 /* MoMamDeTail.m */,
+				8E3FB48A1D86E9EE001E9FD2 /* MoMamDeTail.xib */,
+				8EBABABC1D8970DD004D402E /* MoMamCalendarView.h */,
+				8EBABABD1D8970DD004D402E /* MoMamCalendarView.m */,
+				8EBABABF1D897188004D402E /* MoMamCalendarView.xib */,
+				8E4105151D93D8270000B20E /* MoMamAddButtonDetailViewController.h */,
+				8E4105161D93D8270000B20E /* MoMamAddButtonDetailViewController.m */,
+				8E4105171D93D8270000B20E /* MoMamAddButtonDetailViewController.xib */,
+				8E41051A1D93ED4C0000B20E /* MoMamCalendarDetailViewController.h */,
+				8E41051B1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m */,
+				8E41051C1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib */,
 				8EEAF6161D83E3E500665458 /* AppDelegate.h */,
 				8EEAF6171D83E3E500665458 /* AppDelegate.m */,
-				8EEAF6191D83E3E500665458 /* ViewController.h */,
-				8EEAF61A1D83E3E500665458 /* ViewController.m */,
-				8EEAF61C1D83E3E500665458 /* Main.storyboard */,
 				8EEAF61F1D83E3E500665458 /* Assets.xcassets */,
-				8EEAF6211D83E3E500665458 /* LaunchScreen.storyboard */,
 				8EEAF6241D83E3E500665458 /* Info.plist */,
 				8EEAF6131D83E3E500665458 /* Supporting Files */,
 			);
@@ -79,6 +129,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F139896D5748D0FE6188F3E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				07B08BD2F5DEC36E36CB4604 /* Pods-MoMam.debug.xcconfig */,
+				283EF74DF8616AB87C86FD1E /* Pods-MoMam.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +145,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8EEAF6271D83E3E500665458 /* Build configuration list for PBXNativeTarget "MoMam" */;
 			buildPhases = (
+				2CF14F23D695D9CA613505E3 /* [CP] Check Pods Manifest.lock */,
 				8EEAF60C1D83E3E500665458 /* Sources */,
 				8EEAF60D1D83E3E500665458 /* Frameworks */,
 				8EEAF60E1D83E3E500665458 /* Resources */,
+				06ADA292045B623FF06A8E44 /* [CP] Embed Pods Frameworks */,
+				DD341AF6F8E040EBFA9E9BDD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -137,45 +199,83 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EEAF6231D83E3E500665458 /* LaunchScreen.storyboard in Resources */,
+				8EBABAC01D897188004D402E /* MoMamCalendarView.xib in Resources */,
+				8E41051E1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib in Resources */,
+				8EEAF62D1D83E58F00665458 /* Default@2x.png in Resources */,
+				8E3FB48B1D86E9EE001E9FD2 /* MoMamDeTail.xib in Resources */,
+				8EEAF62B1D83E4F000665458 /* Launch Screen.storyboard in Resources */,
 				8EEAF6201D83E3E500665458 /* Assets.xcassets in Resources */,
-				8EEAF61E1D83E3E500665458 /* Main.storyboard in Resources */,
+				8E3FB4861D86E8EE001E9FD2 /* MoMamMainViewController.xib in Resources */,
+				8E4105191D93D8270000B20E /* MoMamAddButtonDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06ADA292045B623FF06A8E44 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoMam/Pods-MoMam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2CF14F23D695D9CA613505E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DD341AF6F8E040EBFA9E9BDD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoMam/Pods-MoMam-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8EEAF60C1D83E3E500665458 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EEAF61B1D83E3E500665458 /* ViewController.m in Sources */,
+				8E41051D1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m in Sources */,
 				8EEAF6181D83E3E500665458 /* AppDelegate.m in Sources */,
+				8E3FB4851D86E8EE001E9FD2 /* MoMamMainViewController.m in Sources */,
+				8E3FB4891D86E988001E9FD2 /* MoMamDeTail.m in Sources */,
 				8EEAF6151D83E3E500665458 /* main.m in Sources */,
+				8EBABABE1D8970DD004D402E /* MoMamCalendarView.m in Sources */,
+				8E4105181D93D8270000B20E /* MoMamAddButtonDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		8EEAF61C1D83E3E500665458 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8EEAF61D1D83E3E500665458 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8EEAF6211D83E3E500665458 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8EEAF6221D83E3E500665458 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8EEAF6251D83E3E500665458 /* Debug */ = {
@@ -218,6 +318,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -255,6 +356,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -262,23 +364,31 @@
 		};
 		8EEAF6281D83E3E500665458 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07B08BD2F5DEC36E36CB4604 /* Pods-MoMam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MoMam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmhome.MoMam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		8EEAF6291D83E3E500665458 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 283EF74DF8616AB87C86FD1E /* Pods-MoMam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MoMam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmhome.MoMam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -301,6 +411,7 @@
 				8EEAF6291D83E3E500665458 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
