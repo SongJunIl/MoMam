@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet MoMamCalendarView *calendarView;
 
 
-
 @end
 
 @implementation MoMamMainViewController
@@ -44,17 +43,12 @@
 
 
 - (void)viewDidLoad {
-   
     [super viewDidLoad];
-    
-   
   
     self.calendarView.calendarViewc.dataSource = self;
     self.calendarView.calendarViewc.delegate = self;
-    self.calendarView.calendarViewc.appearance.cellStyle = FSCalendarCellStyleRectangle;
+    self.calendarView.calendarViewc.appearance.cellShape = FSCalendarCellShapeRectangle;
     self.calendarTitle.text = @"MoMom";
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,25 +59,16 @@
 
 //캘린더 날짜 선택시 event
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date {
-    
-    
     MoMamCalendarDetailViewController *calendarDetailViewController = [[MoMamCalendarDetailViewController alloc] init];
     calendarDetailViewController.view.backgroundColor = [UIColor whiteColor];
     [self presentViewController:calendarDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
 
-    MoMamAddButtonDetailViewController *addDetailViewController = [[MoMamAddButtonDetailViewController alloc] init];
-    
+//    MoMamAddButtonDetailViewController *addDetailViewController = [[MoMamAddButtonDetailViewController alloc] init];
     
     //선택한 날짜
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                             NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
-    calendarDetailViewController.selectCalendarday.text = [NSString stringWithFormat:@"%ld/%ld/%d", components.year,(long)components.month,(long)components.day];
-    
-    
-    
+    calendarDetailViewController.selectCalendarday.text = [NSString stringWithFormat:@"%ld/%ld/%ld", components.year,(long)components.month,(long)components.day];
 }
-
-
-
 
 @end

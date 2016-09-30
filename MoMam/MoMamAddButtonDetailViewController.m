@@ -174,21 +174,16 @@
 }
 
 - (IBAction)incomeBtn:(id)sender {
-
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"체크박스를 확인해주세요" message:@"" delegate:self cancelButtonTitle:@"확인" otherButtonTitles:nil, nil];
-
-    UIAlertView *textnil = [[UIAlertView alloc]initWithTitle:@"입금내역을 적어주세요" message:@"" delegate:self cancelButtonTitle:@"확인" otherButtonTitles:nil, nil];
-    
     
     if(self.incomeSwitch.on == YES ){
         if( [self.incomeText.text isEqualToString:@""] == YES){
             NSLog(@"텍스트란을 확인해주세요");
-            [textnil show];
+            
         }else{
             NSLog(@"저장완료");
         }
     }else if(self.incomeSwitch.on == NO){
-        [alert show];
+       
         NSLog(@"체크버튼을확인해주세요");
     }
     
