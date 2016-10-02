@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoMamCalendarDetailViewController">
             <connections>
+                <outlet property="addButtonTapped" destination="tfa-dn-Lac" id="PlX-cG-PXC"/>
                 <outlet property="backButton" destination="kYI-n3-RGD" id="cwj-BB-q7B"/>
                 <outlet property="selectCalendarday" destination="rbg-Ru-1Pb" id="Jno-GC-Z2e"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -30,8 +31,8 @@
                                 <action selector="backButton:" destination="-1" eventType="touchUpInside" id="heN-vZ-CKK"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-Ru-1Pb">
-                            <rect key="frame" x="8" y="8" width="292" height="33"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-Ru-1Pb">
+                            <rect key="frame" x="15" y="8" width="292" height="33"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

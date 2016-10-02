@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *addButtonTapped;
 
 
 @end
@@ -44,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     
+    self.addButtonTapped.layer.cornerRadius = 20.0f;
     
 }
 

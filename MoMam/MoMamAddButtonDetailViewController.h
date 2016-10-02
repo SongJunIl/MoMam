@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *selectCalendarDay;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-
 - (IBAction)backButton:(id)sender;
 
 @end

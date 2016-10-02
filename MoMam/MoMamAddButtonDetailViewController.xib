@@ -8,11 +8,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoMamAddButtonDetailViewController">
             <connections>
                 <outlet property="backButton" destination="1Km-B3-slS" id="jJA-sD-ktr"/>
+                <outlet property="incomeBtn" destination="VhJ-RK-UuU" id="Sba-wu-NGV"/>
                 <outlet property="incomePicker" destination="4r8-7o-lpl" id="pLJ-lO-Zzp"/>
-                <outlet property="incomeSwitch" destination="dmb-82-aO0" id="015-sn-WKs"/>
                 <outlet property="incomeText" destination="oeF-2d-OMU" id="Opu-w5-VZ5"/>
                 <outlet property="numberSize" destination="U8w-H4-9zq" id="ICs-Yh-IxD"/>
+                <outlet property="outlayBtn" destination="0p6-yL-xOL" id="TRs-TY-Yhl"/>
                 <outlet property="outlayPicker" destination="Yfz-qG-0Do" id="RvN-XD-FZu"/>
+                <outlet property="outlayText" destination="gwu-L7-8g3" id="CaY-1p-Hf2"/>
                 <outlet property="selectCalendarDay" destination="PZN-vI-IWv" id="hvg-KR-WIx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -74,25 +76,27 @@
                     <state key="normal" title="출금">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="outlayBtn:" destination="-1" eventType="touchUpInside" id="9tt-ZW-Dqp"/>
+                    </connections>
                 </button>
                 <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cgm-T4-lcg">
                     <rect key="frame" x="8" y="332" width="180" height="327"/>
                     <subviews>
-                        <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4r8-7o-lpl">
-                            <rect key="frame" x="0.0" y="60" width="180" height="267"/>
-                        </pickerView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oeF-2d-OMU">
                             <rect key="frame" x="57" y="31" width="115" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dmb-82-aO0">
-                            <rect key="frame" x="0.0" y="30" width="51" height="31"/>
-                            <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="incomeSwitch:" destination="-1" eventType="valueChanged" id="UPO-V1-W2d"/>
-                            </connections>
-                        </switch>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="입금내역" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeI-Va-NLu">
+                            <rect key="frame" x="0.0" y="31" width="59" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4r8-7o-lpl">
+                            <rect key="frame" x="0.0" y="60" width="180" height="267"/>
+                        </pickerView>
                     </subviews>
                     <color key="backgroundColor" red="0.46613240242004395" green="0.9086449146270752" blue="0.47494852542877197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
@@ -102,15 +106,17 @@
                         <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yfz-qG-0Do">
                             <rect key="frame" x="0.0" y="60" width="180" height="267"/>
                         </pickerView>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LBJ-kx-gvr">
-                            <rect key="frame" x="0.0" y="30" width="51" height="31"/>
-                            <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </switch>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwu-L7-8g3">
                             <rect key="frame" x="57" y="30" width="115" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="출금내역" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6Z-VA-Ggf">
+                            <rect key="frame" x="0.0" y="30" width="59" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.99215686274509807" green="0.43529411764705883" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                 </view>

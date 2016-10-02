@@ -16,11 +16,17 @@
 
 @property (weak, nonatomic) IBOutlet UIPickerView *outlayPicker;
 
-@property (weak, nonatomic) IBOutlet UISwitch *incomeSwitch;
-
 @property (weak, nonatomic) IBOutlet UITextField *incomeText;
 
+@property (weak, nonatomic) IBOutlet UITextField *outlayText;
+
 @property (nonatomic,strong) NSMutableArray *incomeArray;
+
+@property (nonatomic,strong) NSMutableArray *outlayArray;
+
+@property (weak, nonatomic) IBOutlet UIButton *incomeBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *outlayBtn;
 
 @end
 
@@ -96,10 +102,16 @@
     self.outlayPicker.delegate=self;
     self.outlayPicker.dataSource=self;
     
-  
-    
     self.incomeArray = [[NSMutableArray alloc]initWithObjects:@"월급",@"용돈",@"이월",nil];
     self.incomeText.text = [self.incomeArray objectAtIndex:0];
+    
+    self.outlayArray = [[NSMutableArray alloc] initWithObjects:@"카드대금",@"저축",@"식비",@"교통비",@"문화생활",nil];
+    self.outlayText.text = [self.outlayArray objectAtIndex:0];
+    
+    self.incomeBtn.layer.cornerRadius = 10.0f;
+    self.outlayBtn.layer.cornerRadius = 10.0f;
+    
+   
     
 }
 
@@ -143,9 +155,8 @@
     if(pickerView == _incomePicker){
         return self.incomeArray.count;
     }else if(pickerView == _outlayPicker){
-        return 2;
+        return self.outlayArray.count;
     }
-
 
     return 0;
     
@@ -160,7 +171,7 @@
         return [self.incomeArray objectAtIndex:row];
               
     }else if(pickerView == _outlayPicker){
-        return 0;
+        return [self.outlayArray objectAtIndex:row];
     }
 
     return 0;
@@ -169,36 +180,22 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     //피커뷰의 내용이 선택되었을 때 실행되는 델리게이트 메소드입니다.
+    if(pickerView == _incomePicker){
     self.incomeText.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    }else if(pickerView == _outlayPicker){
+    self.outlayText.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    }
+}
+- (IBAction)outlayBtn:(id)sender {
     
 }
 
 - (IBAction)incomeBtn:(id)sender {
+  
     
-    if(self.incomeSwitch.on == YES ){
-        if( [self.incomeText.text isEqualToString:@""] == YES){
-            NSLog(@"텍스트란을 확인해주세요");
-            
-        }else{
-            NSLog(@"저장완료");
-        }
-    }else if(self.incomeSwitch.on == NO){
-       
-        NSLog(@"체크버튼을확인해주세요");
-    }
     
 }
 
-- (IBAction)incomeSwitch:(id)sender {
-    
-    if([sender isOn]){
-        NSLog(@"체크온");
-        self.incomeSwitch.on = YES;
-    }else {
-        NSLog(@"체크오프");
-        self.incomeSwitch.on = NO;
-    }
-}
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
