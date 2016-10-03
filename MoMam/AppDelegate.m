@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MoMamMainViewController.h"
+#import "MoMamMyWalletViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,19 +23,16 @@
     //메인 뷰 컨트롤러
     MoMamMainViewController *mainViewController = [[MoMamMainViewController alloc] initWithNibName:@"MoMamMainViewController" bundle:[NSBundle mainBundle]];
  
-//    //메인View 네비게이션
-//    UINavigationController *mainNavi = [[UINavigationController alloc]initWithRootViewController:mainView];
-
+    //wallet 뷰 컨트롤러
+    MoMamMyWalletViewController *myWalletViewController = [[MoMamMyWalletViewController alloc] initWithNibName:@"MoMamMyWalletViewController" bundle:[NSBundle mainBundle]];
     
-    //메인View 탭바
+   //메인View 탭바
     UITabBarController *mainTabBar = [[UITabBarController alloc]init];
-    mainTabBar.viewControllers = @[mainViewController];
-    mainTabBar.tabBar.backgroundColor = [UIColor whiteColor];
-    
+    mainTabBar.viewControllers = @[mainViewController,myWalletViewController];
+    mainTabBar.tabBar.barTintColor = [UIColor whiteColor];
     self.window.rootViewController=mainTabBar;
     
     self.window.backgroundColor = [UIColor whiteColor];
-    
     [self.window makeKeyAndVisible];
     
     return YES;

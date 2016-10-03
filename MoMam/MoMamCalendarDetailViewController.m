@@ -10,12 +10,14 @@
 #import "MoMamMainViewController.h"
 #import "MoMamAddButtonDetailViewController.h"
 #import "FSCalendar.h"
-@interface MoMamCalendarDetailViewController () <FSCalendarDelegate,FSCalendarDataSource>
+#import "MoMamReceiptDetailViewController.h"
+@interface MoMamCalendarDetailViewController () <FSCalendarDelegate,FSCalendarDataSource,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *addButtonTapped;
 
+@property (weak, nonatomic) IBOutlet UITableView *calendarDetailTableView;
 
 @end
 
@@ -35,8 +37,11 @@
    
     addDetailViewController.selectCalendarDay.text = self.selectCalendarday.text;
    
-    
-    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MoMamReceiptDetailViewController *test =[[MoMamReceiptDetailViewController alloc] init];
+    [self presentViewController:test animated:UIPopoverArrowDirectionRight completion:nil];
 }
 
 
@@ -46,6 +51,8 @@
     [super viewDidLoad];
     
     self.addButtonTapped.layer.cornerRadius = 20.0f;
+    self.calendarDetailTableView.delegate = self;
+    self.calendarDetailTableView.dataSource = self;
     
 }
 

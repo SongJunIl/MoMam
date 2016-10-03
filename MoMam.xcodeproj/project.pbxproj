@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		586FB20B9549747EBF39941D /* Pods_MoMam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C308C9E17793A46A41930DC /* Pods_MoMam.framework */; };
+		8E0B704D1DA1051900049650 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B704B1DA1051900049650 /* house.png */; };
+		8E0B704E1DA1051900049650 /* piggy_bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B704C1DA1051900049650 /* piggy_bank.png */; };
+		8E0B70511DA1055E00049650 /* house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B704F1DA1055E00049650 /* house@2x.png */; };
+		8E0B70521DA1055E00049650 /* piggy_bank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B70501DA1055E00049650 /* piggy_bank@2x.png */; };
+		8E0B70541DA111F700049650 /* woodImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B70531DA111F700049650 /* woodImage.jpg */; };
+		8E0B705C1DA2493E00049650 /* paper2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B705B1DA2493E00049650 /* paper2.png */; };
 		8E3FB4851D86E8EE001E9FD2 /* MoMamMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FB4831D86E8EE001E9FD2 /* MoMamMainViewController.m */; };
 		8E3FB4861D86E8EE001E9FD2 /* MoMamMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3FB4841D86E8EE001E9FD2 /* MoMamMainViewController.xib */; };
 		8E3FB4891D86E988001E9FD2 /* MoMamDeTail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FB4881D86E988001E9FD2 /* MoMamDeTail.m */; };
@@ -25,12 +31,20 @@
 		8EEAF6201D83E3E500665458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEAF61F1D83E3E500665458 /* Assets.xcassets */; };
 		8EEAF62B1D83E4F000665458 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EEAF62A1D83E4F000665458 /* Launch Screen.storyboard */; };
 		8EEAF62D1D83E58F00665458 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEAF62C1D83E58F00665458 /* Default@2x.png */; };
+		8EECD1561DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECD1541DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.m */; };
+		8EECD1571DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD1551DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		07B08BD2F5DEC36E36CB4604 /* Pods-MoMam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoMam/Pods-MoMam.debug.xcconfig"; sourceTree = "<group>"; };
 		283EF74DF8616AB87C86FD1E /* Pods-MoMam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMam.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoMam/Pods-MoMam.release.xcconfig"; sourceTree = "<group>"; };
 		2C308C9E17793A46A41930DC /* Pods_MoMam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoMam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E0B704B1DA1051900049650 /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
+		8E0B704C1DA1051900049650 /* piggy_bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = piggy_bank.png; sourceTree = "<group>"; };
+		8E0B704F1DA1055E00049650 /* house@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house@2x.png"; sourceTree = "<group>"; };
+		8E0B70501DA1055E00049650 /* piggy_bank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "piggy_bank@2x.png"; sourceTree = "<group>"; };
+		8E0B70531DA111F700049650 /* woodImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woodImage.jpg; sourceTree = "<group>"; };
+		8E0B705B1DA2493E00049650 /* paper2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paper2.png; sourceTree = "<group>"; };
 		8E3FB4821D86E8EE001E9FD2 /* MoMamMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamMainViewController.h; sourceTree = SOURCE_ROOT; };
 		8E3FB4831D86E8EE001E9FD2 /* MoMamMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamMainViewController.m; sourceTree = SOURCE_ROOT; };
 		8E3FB4841D86E8EE001E9FD2 /* MoMamMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamMainViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -57,6 +71,9 @@
 		8EEAF6241D83E3E500665458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EEAF62A1D83E4F000665458 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8EEAF62C1D83E58F00665458 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		8EECD1531DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamReceiptDetailViewController.h; sourceTree = "<group>"; };
+		8EECD1541DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamReceiptDetailViewController.m; sourceTree = "<group>"; };
+		8EECD1551DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamReceiptDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +101,12 @@
 			children = (
 				8EEAF62A1D83E4F000665458 /* Launch Screen.storyboard */,
 				8EEAF62C1D83E58F00665458 /* Default@2x.png */,
+				8E0B704B1DA1051900049650 /* house.png */,
+				8E0B704C1DA1051900049650 /* piggy_bank.png */,
+				8E0B704F1DA1055E00049650 /* house@2x.png */,
+				8E0B70501DA1055E00049650 /* piggy_bank@2x.png */,
+				8E0B70531DA111F700049650 /* woodImage.jpg */,
+				8E0B705B1DA2493E00049650 /* paper2.png */,
 				8EEAF6121D83E3E500665458 /* MoMam */,
 				8EEAF6111D83E3E500665458 /* Products */,
 				F139896D5748D0FE6188F3E6 /* Pods */,
@@ -120,6 +143,9 @@
 				8EB685231D9E9BC80016E7F9 /* MoMamMyWalletViewController.h */,
 				8EB685241D9E9BC80016E7F9 /* MoMamMyWalletViewController.m */,
 				8EB685251D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib */,
+				8EECD1531DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.h */,
+				8EECD1541DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.m */,
+				8EECD1551DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib */,
 				8EEAF6161D83E3E500665458 /* AppDelegate.h */,
 				8EEAF6171D83E3E500665458 /* AppDelegate.m */,
 				8EEAF61F1D83E3E500665458 /* Assets.xcassets */,
@@ -207,13 +233,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0B704E1DA1051900049650 /* piggy_bank.png in Resources */,
 				8EBABAC01D897188004D402E /* MoMamCalendarView.xib in Resources */,
 				8E41051E1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib in Resources */,
+				8E0B704D1DA1051900049650 /* house.png in Resources */,
 				8EEAF62D1D83E58F00665458 /* Default@2x.png in Resources */,
 				8E3FB48B1D86E9EE001E9FD2 /* MoMamDeTail.xib in Resources */,
+				8E0B70521DA1055E00049650 /* piggy_bank@2x.png in Resources */,
+				8E0B705C1DA2493E00049650 /* paper2.png in Resources */,
 				8EEAF62B1D83E4F000665458 /* Launch Screen.storyboard in Resources */,
+				8E0B70541DA111F700049650 /* woodImage.jpg in Resources */,
+				8EECD1571DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib in Resources */,
 				8EB685271D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib in Resources */,
 				8EEAF6201D83E3E500665458 /* Assets.xcassets in Resources */,
+				8E0B70511DA1055E00049650 /* house@2x.png in Resources */,
 				8E3FB4861D86E8EE001E9FD2 /* MoMamMainViewController.xib in Resources */,
 				8E4105191D93D8270000B20E /* MoMamAddButtonDetailViewController.xib in Resources */,
 			);
@@ -275,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E41051D1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m in Sources */,
+				8EECD1561DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.m in Sources */,
 				8EEAF6181D83E3E500665458 /* AppDelegate.m in Sources */,
 				8E3FB4851D86E8EE001E9FD2 /* MoMamMainViewController.m in Sources */,
 				8E3FB4891D86E988001E9FD2 /* MoMamDeTail.m in Sources */,

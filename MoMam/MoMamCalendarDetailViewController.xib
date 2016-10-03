@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="addButtonTapped" destination="tfa-dn-Lac" id="PlX-cG-PXC"/>
                 <outlet property="backButton" destination="kYI-n3-RGD" id="cwj-BB-q7B"/>
+                <outlet property="calendarDetailTableView" destination="MKu-KY-Ibc" id="67Y-2b-Ee5"/>
                 <outlet property="selectCalendarday" destination="rbg-Ru-1Pb" id="Jno-GC-Z2e"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

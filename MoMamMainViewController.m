@@ -14,14 +14,13 @@
 #import "MoMamCalendarDetailViewController.h"
 
 @interface MoMamMainViewController () <FSCalendarDelegate,FSCalendarDataSource>
-
-
 @property (weak, nonatomic) IBOutlet MoMamCalendarView *calendarView;
-
-
 @end
 
 @implementation MoMamMainViewController
+
+
+
 - (IBAction)addButtonTapped:(id)sender {
     
     MoMamAddButtonDetailViewController *addDetailViewController = [[MoMamAddButtonDetailViewController alloc] init];
@@ -40,7 +39,19 @@
     
 }
 
-
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if(self){
+        self.tabBarItem.title = @"홈";
+        
+        UIImage *home = [UIImage imageNamed:@"house@2x.png"];
+        self.tabBarItem.image = home;
+        
+    }
+    return self;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +60,8 @@
     self.calendarView.calendarViewc.delegate = self;
     self.calendarView.calendarViewc.appearance.cellShape = FSCalendarCellShapeRectangle;
     self.calendarTitle.text = @"MoMom";
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

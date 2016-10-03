@@ -34,12 +34,6 @@
 
 @implementation MoMamAddButtonDetailViewController
 
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-//    if(textField == self.incomeText){
-//        [textField resignFirstResponder];
-//    }
-//    return YES;
-//}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
@@ -187,6 +181,8 @@
     }
 }
 - (IBAction)outlayBtn:(id)sender {
+    
+    
     
 }
 
