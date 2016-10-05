@@ -13,11 +13,10 @@
 
 
 @interface MoMamCalendarDetailViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
+
 @property (weak, nonatomic) IBOutlet UIButton *addButtonTapped;
 @property (weak, nonatomic) IBOutlet UITableView *calendarDetailTableView;
-@property (weak, nonatomic) IBOutlet UITableView *calendarDetailTable;
-
+@property (nonatomic,strong) IBOutlet UIView *headerView;
 @end
 
 @implementation MoMamCalendarDetailViewController{
@@ -40,6 +39,24 @@
    
 }
 
+- (IBAction)toggleEditingMode:(id)sender{
+    if(self.calendarDetailTableView.isEditing){
+        [sender setTitle:@"수정" forState:UIControlStateNormal];
+        [self.calendarDetailTableView setEditing:NO animated:YES];
+    }else{
+        [sender setTitle:@"닫기" forState:UIControlStateNormal];
+        [self.calendarDetailTableView setEditing:YES animated:YES];
+    }
+}
+
+- (UIView *)headerView{
+    if(!_headerView){
+        [[NSBundle mainBundle] loadNibNamed:@"MoMamCalendarDetailHeaderView" owner:self options:nil];
+    }
+    return _headerView;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -49,6 +66,9 @@
     
     array = [NSArray arrayWithObjects:@"Apple", @"Banana", @"Car", @"Dog", @"Elephant", nil];
     
+    UIView *header = self.headerView;
+    [self.calendarDetailTableView setTableHeaderView:header];
+    [self.calendarDetailTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,14 +92,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    
+    UITableViewCell *cell = [self.calendarDetailTableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     cell.textLabel.text = [array objectAtIndex:indexPath.row];
     return cell;
 }
@@ -88,5 +101,6 @@
     MoMamReceiptDetailViewController *receiptDetailViewController = [[MoMamReceiptDetailViewController alloc] init];
     [self presentViewController:receiptDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
 }
+
 
 @end

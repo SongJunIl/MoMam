@@ -8,8 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoMamCalendarDetailViewController">
             <connections>
                 <outlet property="addButtonTapped" destination="tfa-dn-Lac" id="PlX-cG-PXC"/>
-                <outlet property="backButton" destination="kYI-n3-RGD" id="cwj-BB-q7B"/>
-                <outlet property="calendarDetailTable" destination="MKu-KY-Ibc" id="lnG-qo-bRj"/>
                 <outlet property="calendarDetailTableView" destination="MKu-KY-Ibc" id="67Y-2b-Ee5"/>
                 <outlet property="selectCalendarday" destination="rbg-Ru-1Pb" id="Jno-GC-Z2e"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -42,10 +40,6 @@
                     </subviews>
                     <color key="backgroundColor" red="0.41960784309999999" green="0.87450980389999999" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MKu-KY-Ibc">
-                    <rect key="frame" x="0.0" y="72" width="375" height="383"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jtb-wi-BLR">
                     <rect key="frame" x="0.0" y="463" width="375" height="58"/>
                     <subviews>
@@ -117,6 +111,10 @@
                     </subviews>
                     <color key="backgroundColor" red="0.44597453140247562" green="0.86878063723333332" blue="0.40799950930504181" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MKu-KY-Ibc">
+                    <rect key="frame" x="0.0" y="69" width="375" height="386"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

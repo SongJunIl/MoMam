@@ -7,6 +7,7 @@
 //
 
 #import "MoMamAddButtonDetailViewController.h"
+#import "MoMamOutlayDetailViewController.h"
 
 @interface MoMamAddButtonDetailViewController () <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
@@ -182,7 +183,8 @@
 }
 - (IBAction)outlayBtn:(id)sender {
     
-    
+    MoMamOutlayDetailViewController *outlayDetailViewController = [[MoMamOutlayDetailViewController alloc] init];
+     [self presentViewController:outlayDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
     
 }
 

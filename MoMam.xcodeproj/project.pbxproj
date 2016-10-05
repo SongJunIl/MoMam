@@ -35,6 +35,9 @@
 		8EECD1571DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD1551DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib */; };
 		8EECD15B1DA4EFF700DD2BB2 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD1591DA4EFF700DD2BB2 /* tree.png */; };
 		8EECD15C1DA4EFF700DD2BB2 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD15A1DA4EFF700DD2BB2 /* apple.png */; };
+		8EECD15E1DA5472400DD2BB2 /* MoMamCalendarDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD15D1DA5472400DD2BB2 /* MoMamCalendarDetailHeaderView.xib */; };
+		8EECD1621DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECD1601DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m */; };
+		8EECD1631DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD1611DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +81,10 @@
 		8EECD1551DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamReceiptDetailViewController.xib; sourceTree = "<group>"; };
 		8EECD1591DA4EFF700DD2BB2 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
 		8EECD15A1DA4EFF700DD2BB2 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		8EECD15D1DA5472400DD2BB2 /* MoMamCalendarDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamCalendarDetailHeaderView.xib; sourceTree = "<group>"; };
+		8EECD15F1DA5579900DD2BB2 /* MoMamOutlayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamOutlayDetailViewController.h; sourceTree = "<group>"; };
+		8EECD1601DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamOutlayDetailViewController.m; sourceTree = "<group>"; };
+		8EECD1611DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamOutlayDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +142,12 @@
 				8E4105151D93D8270000B20E /* MoMamAddButtonDetailViewController.h */,
 				8E4105161D93D8270000B20E /* MoMamAddButtonDetailViewController.m */,
 				8E4105171D93D8270000B20E /* MoMamAddButtonDetailViewController.xib */,
+				8EECD15F1DA5579900DD2BB2 /* MoMamOutlayDetailViewController.h */,
+				8EECD1601DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m */,
+				8EECD1611DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib */,
 				8E41051A1D93ED4C0000B20E /* MoMamCalendarDetailViewController.h */,
 				8E41051B1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m */,
+				8EECD15D1DA5472400DD2BB2 /* MoMamCalendarDetailHeaderView.xib */,
 				8E41051C1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib */,
 				8EB685231D9E9BC80016E7F9 /* MoMamMyWalletViewController.h */,
 				8EB685241D9E9BC80016E7F9 /* MoMamMyWalletViewController.m */,
@@ -258,6 +269,8 @@
 				8E0B705C1DA2493E00049650 /* paper2.png in Resources */,
 				8EEAF62B1D83E4F000665458 /* Launch Screen.storyboard in Resources */,
 				8E0B70541DA111F700049650 /* woodImage.jpg in Resources */,
+				8EECD1631DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib in Resources */,
+				8EECD15E1DA5472400DD2BB2 /* MoMamCalendarDetailHeaderView.xib in Resources */,
 				8EECD1571DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.xib in Resources */,
 				8EB685271D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib in Resources */,
 				8EECD15B1DA4EFF700DD2BB2 /* tree.png in Resources */,
@@ -328,6 +341,7 @@
 				8EEAF6181D83E3E500665458 /* AppDelegate.m in Sources */,
 				8E3FB4851D86E8EE001E9FD2 /* MoMamMainViewController.m in Sources */,
 				8E3FB4891D86E988001E9FD2 /* MoMamDeTail.m in Sources */,
+				8EECD1621DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m in Sources */,
 				8EEAF6151D83E3E500665458 /* main.m in Sources */,
 				8EB685261D9E9BC80016E7F9 /* MoMamMyWalletViewController.m in Sources */,
 				8EBABABE1D8970DD004D402E /* MoMamCalendarView.m in Sources */,
