@@ -9,19 +9,20 @@
 #import "MoMamCalendarDetailViewController.h"
 #import "MoMamMainViewController.h"
 #import "MoMamAddButtonDetailViewController.h"
-#import "FSCalendar.h"
 #import "MoMamReceiptDetailViewController.h"
-@interface MoMamCalendarDetailViewController () <FSCalendarDelegate,FSCalendarDataSource,UITableViewDelegate,UITableViewDataSource>
 
+
+@interface MoMamCalendarDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *addButtonTapped;
-
 @property (weak, nonatomic) IBOutlet UITableView *calendarDetailTableView;
+@property (weak, nonatomic) IBOutlet UITableView *calendarDetailTable;
 
 @end
 
-@implementation MoMamCalendarDetailViewController
+@implementation MoMamCalendarDetailViewController{
+    NSArray *array;
+}
 - (IBAction)backButton:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -39,20 +40,14 @@
    
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MoMamReceiptDetailViewController *test =[[MoMamReceiptDetailViewController alloc] init];
-    [self presentViewController:test animated:UIPopoverArrowDirectionRight completion:nil];
-}
-
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.addButtonTapped.layer.cornerRadius = 20.0f;
     self.calendarDetailTableView.delegate = self;
     self.calendarDetailTableView.dataSource = self;
+    
+    array = [NSArray arrayWithObjects:@"Apple", @"Banana", @"Car", @"Dog", @"Elephant", nil];
     
 }
 
@@ -68,6 +63,30 @@
         [[NSBundle mainBundle] loadNibNamed:@"MoMamCalendarDetailViewController" owner:self options:nil];
     }
     return self;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [array count];;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    
+    cell.textLabel.text = [array objectAtIndex:indexPath.row];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MoMamReceiptDetailViewController *receiptDetailViewController = [[MoMamReceiptDetailViewController alloc] init];
+    [self presentViewController:receiptDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
 }
 
 @end

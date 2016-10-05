@@ -38,4 +38,8 @@
     return self;
 }
 
+- (IBAction)backButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

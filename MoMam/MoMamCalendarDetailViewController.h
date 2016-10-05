@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MoMamCalendarDetailViewController : UIViewController 
+#import "FSCalendar.h"
+@interface MoMamCalendarDetailViewController : UIViewController <FSCalendarDelegate,FSCalendarDataSource,UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *selectCalendarday;
 

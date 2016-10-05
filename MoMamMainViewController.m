@@ -59,7 +59,7 @@
     self.calendarView.calendarViewc.dataSource = self;
     self.calendarView.calendarViewc.delegate = self;
     self.calendarView.calendarViewc.appearance.cellShape = FSCalendarCellShapeRectangle;
-    self.calendarTitle.text = @"MoMom";
+    self.calendarTitle.text = @"MoMam";
     
 
 }
