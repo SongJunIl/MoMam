@@ -44,9 +44,9 @@
                     <rect key="frame" x="0.0" y="463" width="375" height="58"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfa-dn-Lac">
-                            <rect key="frame" x="166" y="0.0" width="43" height="40"/>
+                            <rect key="frame" x="162" y="8" width="52" height="42"/>
                             <color key="backgroundColor" red="0.46613240242004395" green="0.9086449146270752" blue="0.47494852542877197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="37"/>
                             <state key="normal" title="+">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>

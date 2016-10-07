@@ -12,12 +12,14 @@
 #import "FSCalendar.h"
 #import "MoMamAddButtonDetailViewController.h"
 #import "MoMamCalendarDetailViewController.h"
-
-@interface MoMamMainViewController () <FSCalendarDelegate,FSCalendarDataSource>
+#import "MoMamCalendarTableViewCell.h"
+@interface MoMamMainViewController () 
 @property (weak, nonatomic) IBOutlet MoMamCalendarView *calendarView;
 @end
 
-@implementation MoMamMainViewController
+@implementation MoMamMainViewController{
+    NSArray *array;
+}
 
 
 
@@ -60,7 +62,12 @@
     self.calendarView.calendarViewc.delegate = self;
     self.calendarView.calendarViewc.appearance.cellShape = FSCalendarCellShapeRectangle;
     self.calendarTitle.text = @"MoMam";
+    self.mainTableView.delegate=self;
+    self.mainTableView.dataSource=self;
+    UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
+    [self.mainTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
     
+    array = [NSArray arrayWithObjects:@"Apple", @"Banana", @"Car", @"Dog", @"Elephant", nil];
 
 }
 
@@ -68,6 +75,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [array count];;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    MoMamCalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
+    cell.classification.text = [array objectAtIndex:indexPath.row];
+    return cell;
+}
+
 
 
 //캘린더 날짜 선택시 event

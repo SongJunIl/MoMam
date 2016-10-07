@@ -38,6 +38,8 @@
 		8EECD15E1DA5472400DD2BB2 /* MoMamCalendarDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD15D1DA5472400DD2BB2 /* MoMamCalendarDetailHeaderView.xib */; };
 		8EECD1621DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECD1601DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m */; };
 		8EECD1631DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD1611DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib */; };
+		8EECD1671DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECD1651DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m */; };
+		8EECD1681DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD1661DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,9 @@
 		8EECD15F1DA5579900DD2BB2 /* MoMamOutlayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamOutlayDetailViewController.h; sourceTree = "<group>"; };
 		8EECD1601DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamOutlayDetailViewController.m; sourceTree = "<group>"; };
 		8EECD1611DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamOutlayDetailViewController.xib; sourceTree = "<group>"; };
+		8EECD1641DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamCalendarTableViewCell.h; sourceTree = "<group>"; };
+		8EECD1651DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamCalendarTableViewCell.m; sourceTree = "<group>"; };
+		8EECD1661DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamCalendarTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +154,9 @@
 				8E41051B1D93ED4C0000B20E /* MoMamCalendarDetailViewController.m */,
 				8EECD15D1DA5472400DD2BB2 /* MoMamCalendarDetailHeaderView.xib */,
 				8E41051C1D93ED4C0000B20E /* MoMamCalendarDetailViewController.xib */,
+				8EECD1641DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.h */,
+				8EECD1651DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m */,
+				8EECD1661DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.xib */,
 				8EB685231D9E9BC80016E7F9 /* MoMamMyWalletViewController.h */,
 				8EB685241D9E9BC80016E7F9 /* MoMamMyWalletViewController.m */,
 				8EB685251D9E9BC80016E7F9 /* MoMamMyWalletViewController.xib */,
@@ -266,6 +274,7 @@
 				8EEAF62D1D83E58F00665458 /* Default@2x.png in Resources */,
 				8E3FB48B1D86E9EE001E9FD2 /* MoMamDeTail.xib in Resources */,
 				8E0B70521DA1055E00049650 /* piggy_bank@2x.png in Resources */,
+				8EECD1681DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.xib in Resources */,
 				8E0B705C1DA2493E00049650 /* paper2.png in Resources */,
 				8EEAF62B1D83E4F000665458 /* Launch Screen.storyboard in Resources */,
 				8E0B70541DA111F700049650 /* woodImage.jpg in Resources */,
@@ -346,6 +355,7 @@
 				8EB685261D9E9BC80016E7F9 /* MoMamMyWalletViewController.m in Sources */,
 				8EBABABE1D8970DD004D402E /* MoMamCalendarView.m in Sources */,
 				8E4105181D93D8270000B20E /* MoMamAddButtonDetailViewController.m in Sources */,
+				8EECD1671DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

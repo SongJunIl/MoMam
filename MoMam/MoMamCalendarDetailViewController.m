@@ -10,7 +10,7 @@
 #import "MoMamMainViewController.h"
 #import "MoMamAddButtonDetailViewController.h"
 #import "MoMamReceiptDetailViewController.h"
-
+#import "MoMamCalendarTableViewCell.h"
 
 @interface MoMamCalendarDetailViewController ()
 
@@ -60,7 +60,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.addButtonTapped.layer.cornerRadius = 20.0f;
+    self.addButtonTapped.layer.cornerRadius = 15.0f;
     self.calendarDetailTableView.delegate = self;
     self.calendarDetailTableView.dataSource = self;
     
@@ -68,7 +68,10 @@
     
     UIView *header = self.headerView;
     [self.calendarDetailTableView setTableHeaderView:header];
-    [self.calendarDetailTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    
+    UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
+    [self.calendarDetailTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,8 +95,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.calendarDetailTableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    cell.textLabel.text = [array objectAtIndex:indexPath.row];
+    
+    MoMamCalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
+    cell.classification.text = [array objectAtIndex:indexPath.row];
     return cell;
 }
 
