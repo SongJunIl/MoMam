@@ -7,11 +7,33 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountBook.h"
 
-@interface MoMamAddButtonDetailViewController : UIViewController <UIPickerViewDelegate>
+@interface MoMamAddButtonDetailViewController : UIViewController <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+
+
 
 @property (weak, nonatomic) IBOutlet UILabel *selectCalendarDay;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-- (IBAction)backButton:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UITextField *price;
+
+@property (weak, nonatomic) IBOutlet UITextField *incomeHistory;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *incomePicker;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *outlayPicker;
+
+@property (weak, nonatomic) IBOutlet UITextField *incomeText;
+
+@property (weak, nonatomic) IBOutlet UITextField *outlayText;
+
+@property (weak, nonatomic) IBOutlet UITextField *outlayHistory;
+
+-(IBAction)incomeBtn:(id)sender;
+- (void)initCoreData;
+- (void)loadAccountBookData;
+
+@property (nonatomic,strong) NSManagedObjectModel *model;
+@property (nonatomic,strong) NSManagedObjectContext *context;
+@property (nonatomic,strong) NSArray *object;
 @end

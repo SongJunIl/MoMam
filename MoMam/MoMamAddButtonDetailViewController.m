@@ -8,18 +8,13 @@
 
 #import "MoMamAddButtonDetailViewController.h"
 #import "MoMamOutlayDetailViewController.h"
+#import "MoMamMainViewController.h"
+#import "AccountBook.h"
+#import "MoMamCalendarDetailViewController.h"
 
-@interface MoMamAddButtonDetailViewController () <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@import CoreData;
 
-@property (weak, nonatomic) IBOutlet UITextField *numberSize;
-
-@property (weak, nonatomic) IBOutlet UIPickerView *incomePicker;
-
-@property (weak, nonatomic) IBOutlet UIPickerView *outlayPicker;
-
-@property (weak, nonatomic) IBOutlet UITextField *incomeText;
-
-@property (weak, nonatomic) IBOutlet UITextField *outlayText;
+@interface MoMamAddButtonDetailViewController ()
 
 @property (nonatomic,strong) NSMutableArray *incomeArray;
 
@@ -28,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *incomeBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *outlayBtn;
+
 
 @end
 
@@ -47,11 +43,6 @@
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     bool isNumeric = [string isEqualToString:filtered];
     
-    // Then if the replacement string's numeric, or if it's
-    // a backspace, or if it's a decimal point and the text
-    // field doesn't already contain a decimal point,
-    // reformat the new complete number using
-    // NSNumberFormatterDecimalStyle
     if (isNumeric ||
         [string isEqualToString:@""] ||
         ([string isEqualToString:@"."] &&
@@ -91,7 +82,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.numberSize.delegate=self;
+    self.price.delegate=self;
     self.incomePicker.delegate=self;
     self.incomePicker.dataSource=self;
     self.outlayPicker.delegate=self;
@@ -106,8 +97,10 @@
     self.incomeBtn.layer.cornerRadius = 10.0f;
     self.outlayBtn.layer.cornerRadius = 10.0f;
     
-   
+    [self initCoreData];
     
+    
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,12 +109,13 @@
 }
 
 
-
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"MoMamAddButtonDetailViewController" owner:self options:nil];
+       
+
     }
     return self;
 }
@@ -189,15 +183,76 @@
 }
 
 - (IBAction)incomeBtn:(id)sender {
-  
     
+    NSError *error;
+    NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"AccountBook" inManagedObjectContext:self.context];
     
+    AccountBook *acc = [[AccountBook alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.context];
+   
+    acc.selectCalendarDay = self.selectCalendarDay.text;
+    acc.price = @([self.price.text stringByReplacingOccurrencesOfString:@"," withString:@""].intValue);
+    acc.incomeText = self.incomeText.text;
+    acc.incomeHistory = self.incomeHistory.text;
+   
+    [self.context save:&error];
+    
+    if(error != nil)
+    {
+        NSLog(@"Error :%@",[error localizedFailureReason]);
+    }else{
+         NSLog(@"성공");
+    }
+    
+    NSLog(@"%@",self.incomeText.text);
+    NSLog(@"%@",self.incomeHistory.text);
+    NSLog(@"%d",[self.price.text stringByReplacingOccurrencesOfString:@"," withString:@""].intValue);
+    NSLog(@"%d",[self.selectCalendarDay.text stringByReplacingOccurrencesOfString:@"/" withString:@""].intValue);
+    
+    [self documentPath];
+   
 }
-
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
 }
+
+-(void)initCoreData
+{
+    NSError *error;
+    // Path to data file.
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/accountBook.db"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error])
+        NSLog(@"Error: %@", [error localizedFailureReason]);
+    else
+    {
+        _context = [[NSManagedObjectContext alloc] init];
+        [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
+    }
+    
+}
+
+-(void)documentPath{
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentDir = [paths objectAtIndex:0];
+    NSLog(@"%@", documentDir);
+}
+
+
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *accountEntity = [NSEntityDescription entityForName:@"AccountBook" inManagedObjectContext:self.context];
+//    //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selectCalendarDay == %@",self.selectCalendarDay];
+//
+//    request.entity = accountEntity;
+//    NSError *error;
+//    NSArray *result =[self.context executeFetchRequest:request error:&error];
+//    if(!result){
+//        [NSException raise:@"Fetch failed" format:@"실패 이유: %@",[error localizedDescription]];
+//    }
+//    self.accountBookArray = [[NSMutableArray alloc] initWithArray:result];
 @end
