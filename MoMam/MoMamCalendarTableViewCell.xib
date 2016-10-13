@@ -15,6 +15,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="mKh-i0-rdp">
+                        <rect key="frame" x="0.0" y="0.0" width="45" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="wa8-pU-b09"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="분류" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKu-7X-qoi">
                         <rect key="frame" x="42" y="0.0" width="46" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -33,12 +39,6 @@
                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="mKh-i0-rdp">
-                        <rect key="frame" x="0.0" y="0.0" width="45" height="43.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="45" id="wa8-pU-b09"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mKh-i0-rdp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="EHy-yp-QJz"/>
@@ -47,10 +47,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="classification" destination="UKu-7X-qoi" id="jFH-41-B7x"/>
-                <outlet property="history" destination="agp-hb-1AJ" id="kyK-r3-OhP"/>
+                <outlet property="classification" destination="UKu-7X-qoi" id="X0c-rk-fdz"/>
+                <outlet property="history" destination="agp-hb-1AJ" id="oBp-0x-XPo"/>
                 <outlet property="logoView" destination="mKh-i0-rdp" id="Iba-Ld-fGy"/>
-                <outlet property="price" destination="HRZ-oo-ETO" id="BaS-qv-oBV"/>
+                <outlet property="price" destination="HRZ-oo-ETO" id="3hP-pd-Nrf"/>
             </connections>
             <point key="canvasLocation" x="242" y="131"/>
         </tableViewCell>

@@ -15,15 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AccountBook (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *selectCalendarDay;
-@property (nullable, nonatomic, retain) NSNumber *price;
-@property (nullable, nonatomic, retain) NSString *incomeText;
-@property (nullable, nonatomic, retain) NSString *outlayText;
-@property (nullable, nonatomic, retain) NSString *incomeHistory;
-@property (nullable, nonatomic, retain) NSString *outlayHistory;
-@property (nullable, nonatomic, retain) NSNumber *outlayKinds;
-@property (nullable, nonatomic, retain) NSString *note;
-@property (nullable, nonatomic, retain) NSNumber *useKinds;
+@property (nullable, nonatomic, strong) NSString *selectCalendarDay;
+@property (nullable, nonatomic, strong) NSNumber *price;
+@property (nullable, nonatomic, strong) NSString *incomeText;
+@property (nullable, nonatomic, strong) NSString *outlayText;
+@property (nullable, nonatomic, strong) NSString *incomeHistory;
+@property (nullable, nonatomic, strong) NSString *outlayHistory;
+@property (nullable, nonatomic, strong) NSNumber *outlayKinds;
+@property (nullable, nonatomic, strong) NSString *note;
+@property (nullable, nonatomic, strong) NSNumber *useKinds;
 
 @end
 

@@ -114,8 +114,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"MoMamAddButtonDetailViewController" owner:self options:nil];
-       
-
     }
     return self;
 }
@@ -133,8 +131,6 @@
 {
     //컴포넌트 수를 정해주는 메소드
     return 1;
-    
-    
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -180,6 +176,11 @@
     MoMamOutlayDetailViewController *outlayDetailViewController = [[MoMamOutlayDetailViewController alloc] init];
      [self presentViewController:outlayDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
     
+    outlayDetailViewController.selectCalendarDay.text = self.selectCalendarDay.text;
+    outlayDetailViewController.price.text=self.price.text;
+    outlayDetailViewController.outlayText.text=self.outlayText.text;
+    outlayDetailViewController.outlayHistroy.text =self.outlayHistory.text;
+    
 }
 
 - (IBAction)incomeBtn:(id)sender {
@@ -188,12 +189,13 @@
     NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"AccountBook" inManagedObjectContext:self.context];
     
     AccountBook *acc = [[AccountBook alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.context];
-   
+    
     acc.selectCalendarDay = self.selectCalendarDay.text;
     acc.price = @([self.price.text stringByReplacingOccurrencesOfString:@"," withString:@""].intValue);
     acc.incomeText = self.incomeText.text;
     acc.incomeHistory = self.incomeHistory.text;
-   
+    acc.useKinds = [NSNumber numberWithInt:1];
+    
     [self.context save:&error];
     
     if(error != nil)
@@ -202,14 +204,8 @@
     }else{
          NSLog(@"성공");
     }
-    
-    NSLog(@"%@",self.incomeText.text);
-    NSLog(@"%@",self.incomeHistory.text);
-    NSLog(@"%d",[self.price.text stringByReplacingOccurrencesOfString:@"," withString:@""].intValue);
-    NSLog(@"%d",[self.selectCalendarDay.text stringByReplacingOccurrencesOfString:@"/" withString:@""].intValue);
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self documentPath];
-   
 }
 
 
@@ -243,16 +239,4 @@
     NSLog(@"%@", documentDir);
 }
 
-
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *accountEntity = [NSEntityDescription entityForName:@"AccountBook" inManagedObjectContext:self.context];
-//    //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selectCalendarDay == %@",self.selectCalendarDay];
-//
-//    request.entity = accountEntity;
-//    NSError *error;
-//    NSArray *result =[self.context executeFetchRequest:request error:&error];
-//    if(!result){
-//        [NSException raise:@"Fetch failed" format:@"실패 이유: %@",[error localizedDescription]];
-//    }
-//    self.accountBookArray = [[NSMutableArray alloc] initWithArray:result];
 @end

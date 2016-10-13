@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MoMamOutlayDetailViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UILabel *price;
+@property (weak, nonatomic) IBOutlet UILabel *outlayHistroy;
+@property (weak, nonatomic) IBOutlet UILabel *outlayText;
+@property (weak, nonatomic) IBOutlet UILabel *selectCalendarDay;
 @end

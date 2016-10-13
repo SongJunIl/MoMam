@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "MoMamMainViewController.h"
 #import "MoMamMyWalletViewController.h"
-
+#import "MoMamAddButtonDetailViewController.h"
+#import "MoMamCalendarDetailViewController.h"
 @interface AppDelegate ()
 
 @end

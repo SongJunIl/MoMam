@@ -8,16 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "FSCalendar.h"
+#import "MoMamMainViewController.h"
+#import "MoMamCalendarView.h"
+
 @class MoMamAddButtonDetailViewController;
 
 @interface MoMamMainViewController : UIViewController <FSCalendarDelegate,FSCalendarDataSource,UITableViewDelegate,UITableViewDataSource>
     
-
 @property (weak, nonatomic) IBOutlet UILabel *calendarTitle;
 
 @property (weak, nonatomic) IBOutlet UIButton *addButtonTapped;
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
-
+@property (weak, nonatomic) IBOutlet MoMamCalendarView *calendarView;
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date;
 @end

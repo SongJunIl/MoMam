@@ -31,9 +31,6 @@
 
 -(IBAction)incomeBtn:(id)sender;
 - (void)initCoreData;
-- (void)loadAccountBookData;
-
-@property (nonatomic,strong) NSManagedObjectModel *model;
 @property (nonatomic,strong) NSManagedObjectContext *context;
 @property (nonatomic,strong) NSArray *object;
 @end

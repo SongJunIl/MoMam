@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FSCalendar.h"
+
 @interface MoMamCalendarDetailViewController : UIViewController <FSCalendarDelegate,FSCalendarDataSource,UITableViewDataSource,UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *selectCalendarday;
-
+@property (weak, nonatomic) IBOutlet UILabel *selectCalendarDay;
+@property (nonatomic,strong) NSManagedObjectContext *context;
+-(void)loadAccountBookData;
 @end

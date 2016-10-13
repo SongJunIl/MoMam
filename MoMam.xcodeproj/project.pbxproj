@@ -40,6 +40,9 @@
 		8EECD1631DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD1611DA5579900DD2BB2 /* MoMamOutlayDetailViewController.xib */; };
 		8EECD1671DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECD1651DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m */; };
 		8EECD1681DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EECD1661DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.xib */; };
+		8EECD16B1DA7B1E500DD2BB2 /* MoMam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EECD1691DA7B1E500DD2BB2 /* MoMam.xcdatamodeld */; };
+		8EECD1911DA8176900DD2BB2 /* AccountBook+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECD18E1DA8176900DD2BB2 /* AccountBook+CoreDataProperties.m */; };
+		8EECD1921DA8176900DD2BB2 /* AccountBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECD1901DA8176900DD2BB2 /* AccountBook.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,11 @@
 		8EECD1641DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoMamCalendarTableViewCell.h; sourceTree = "<group>"; };
 		8EECD1651DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoMamCalendarTableViewCell.m; sourceTree = "<group>"; };
 		8EECD1661DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoMamCalendarTableViewCell.xib; sourceTree = "<group>"; };
+		8EECD16A1DA7B1E500DD2BB2 /* MoMam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoMam.xcdatamodel; sourceTree = "<group>"; };
+		8EECD18D1DA8176900DD2BB2 /* AccountBook+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AccountBook+CoreDataProperties.h"; sourceTree = "<group>"; };
+		8EECD18E1DA8176900DD2BB2 /* AccountBook+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AccountBook+CoreDataProperties.m"; sourceTree = "<group>"; };
+		8EECD18F1DA8176900DD2BB2 /* AccountBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBook.h; sourceTree = "<group>"; };
+		8EECD1901DA8176900DD2BB2 /* AccountBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBook.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +143,11 @@
 		8EEAF6121D83E3E500665458 /* MoMam */ = {
 			isa = PBXGroup;
 			children = (
+				8EECD1691DA7B1E500DD2BB2 /* MoMam.xcdatamodeld */,
+				8EECD18D1DA8176900DD2BB2 /* AccountBook+CoreDataProperties.h */,
+				8EECD18E1DA8176900DD2BB2 /* AccountBook+CoreDataProperties.m */,
+				8EECD18F1DA8176900DD2BB2 /* AccountBook.h */,
+				8EECD1901DA8176900DD2BB2 /* AccountBook.m */,
 				8E3FB4821D86E8EE001E9FD2 /* MoMamMainViewController.h */,
 				8E3FB4831D86E8EE001E9FD2 /* MoMamMainViewController.m */,
 				8E3FB4841D86E8EE001E9FD2 /* MoMamMainViewController.xib */,
@@ -349,12 +362,15 @@
 				8EECD1561DA259EA00DD2BB2 /* MoMamReceiptDetailViewController.m in Sources */,
 				8EEAF6181D83E3E500665458 /* AppDelegate.m in Sources */,
 				8E3FB4851D86E8EE001E9FD2 /* MoMamMainViewController.m in Sources */,
+				8EECD1921DA8176900DD2BB2 /* AccountBook.m in Sources */,
 				8E3FB4891D86E988001E9FD2 /* MoMamDeTail.m in Sources */,
+				8EECD16B1DA7B1E500DD2BB2 /* MoMam.xcdatamodeld in Sources */,
 				8EECD1621DA5579900DD2BB2 /* MoMamOutlayDetailViewController.m in Sources */,
 				8EEAF6151D83E3E500665458 /* main.m in Sources */,
 				8EB685261D9E9BC80016E7F9 /* MoMamMyWalletViewController.m in Sources */,
 				8EBABABE1D8970DD004D402E /* MoMamCalendarView.m in Sources */,
 				8E4105181D93D8270000B20E /* MoMamAddButtonDetailViewController.m in Sources */,
+				8EECD1911DA8176900DD2BB2 /* AccountBook+CoreDataProperties.m in Sources */,
 				8EECD1671DA5780F00DD2BB2 /* MoMamCalendarTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +514,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8EECD1691DA7B1E500DD2BB2 /* MoMam.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8EECD16A1DA7B1E500DD2BB2 /* MoMam.xcdatamodel */,
+			);
+			currentVersion = 8EECD16A1DA7B1E500DD2BB2 /* MoMam.xcdatamodel */;
+			path = MoMam.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8EEAF6081D83E3E500665458 /* Project object */;
 }

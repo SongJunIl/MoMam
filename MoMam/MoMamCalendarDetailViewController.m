@@ -11,32 +11,32 @@
 #import "MoMamAddButtonDetailViewController.h"
 #import "MoMamReceiptDetailViewController.h"
 #import "MoMamCalendarTableViewCell.h"
-
+#import "AccountBook.h"
+@import CoreData;
 @interface MoMamCalendarDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *addButtonTapped;
 @property (weak, nonatomic) IBOutlet UITableView *calendarDetailTableView;
 @property (nonatomic,strong) IBOutlet UIView *headerView;
+@property (nonatomic,strong) NSMutableArray *accountBookArray;
 @end
 
-@implementation MoMamCalendarDetailViewController{
-    NSArray *array;
+@implementation MoMamCalendarDetailViewController 
+{
+   AccountBook *accountBook;
 }
 - (IBAction)backButton:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
-
 
 - (IBAction)addButtonTapped:(id)sender {
    
     MoMamAddButtonDetailViewController *addDetailViewController = [[MoMamAddButtonDetailViewController alloc] init];
-    
     addDetailViewController.view.backgroundColor = [UIColor whiteColor];
     [self presentViewController:addDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
-   
-    addDetailViewController.selectCalendarDay.text = self.selectCalendarday.text;
-   
+    addDetailViewController.selectCalendarDay.text = self.selectCalendarDay.text;
 }
 
 - (IBAction)toggleEditingMode:(id)sender{
@@ -60,19 +60,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.addButtonTapped.layer.cornerRadius = 15.0f;
+    self.addButtonTapped.layer.cornerRadius = 20.0f;
     self.calendarDetailTableView.delegate = self;
     self.calendarDetailTableView.dataSource = self;
-    
-    array = [NSArray arrayWithObjects:@"Apple", @"Banana", @"Car", @"Dog", @"Elephant", nil];
     
     UIView *header = self.headerView;
     [self.calendarDetailTableView setTableHeaderView:header];
     
     UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
     [self.calendarDetailTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
+     self.accountBookArray = [[NSMutableArray alloc] init];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self initCoreData];
+    [self.calendarDetailTableView reloadData];
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -88,16 +93,29 @@
     return self;
 }
 
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [array count];;
+    return self.accountBookArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     MoMamCalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
-    cell.classification.text = [array objectAtIndex:indexPath.row];
+    accountBook = [self.accountBookArray objectAtIndex:indexPath.row];
+    
+    cell.price.text = [accountBook.price stringValue];
+   
+    if(accountBook.useKinds.intValue == 1){
+        cell.classification.text = accountBook.incomeText;
+        cell.history.text = accountBook.incomeHistory;
+    }else{
+        cell.classification.text = accountBook.outlayText;
+        cell.history.text = accountBook.outlayHistory;
+        cell.classification.textColor=[UIColor redColor];
+    }
     return cell;
 }
 
@@ -105,6 +123,41 @@
     MoMamReceiptDetailViewController *receiptDetailViewController = [[MoMamReceiptDetailViewController alloc] init];
     [self presentViewController:receiptDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
 }
+
+-(void)initCoreData
+{
+    NSError *error;
+    // Path to data file.
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/accountBook.db"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error])
+        NSLog(@"Error: %@", [error localizedFailureReason]);
+    else
+    {
+        _context = [[NSManagedObjectContext alloc] init];
+        [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
+    }
+   [self loadAccountBookData];
+}
+
+- (void)loadAccountBookData{
+    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+   fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
+                               inManagedObjectContext:self.context];
+    
+    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay LIKE %@",self.selectCalendarDay.text];
+    [fetch setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
+    if (error) {
+        NSLog(@"Failed to fetch objects: %@", [error description]);
+    }
+    self.accountBookArray = [reuslt mutableCopy];
+}
+
 
 
 @end

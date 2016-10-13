@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="addButtonTapped" destination="tfa-dn-Lac" id="PlX-cG-PXC"/>
                 <outlet property="calendarDetailTableView" destination="MKu-KY-Ibc" id="67Y-2b-Ee5"/>
-                <outlet property="selectCalendarday" destination="rbg-Ru-1Pb" id="Jno-GC-Z2e"/>
+                <outlet property="selectCalendarDay" destination="rbg-Ru-1Pb" id="lhO-lp-VCQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,7 +31,7 @@
                                 <action selector="backButton:" destination="-1" eventType="touchUpInside" id="heN-vZ-CKK"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-Ru-1Pb">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-Ru-1Pb">
                             <rect key="frame" x="15" y="8" width="292" height="33"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
