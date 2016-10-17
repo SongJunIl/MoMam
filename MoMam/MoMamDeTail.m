@@ -9,7 +9,7 @@
 #import "MoMamDeTail.h"
 
 @implementation MoMamDeTail
-
+  
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -19,7 +19,6 @@
     }
     return self;
 }
-
 
 
 @end

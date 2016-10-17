@@ -22,5 +22,5 @@
 @dynamic outlayKinds;
 @dynamic note;
 @dynamic useKinds;
-
+@dynamic accountBookNumber;
 @end

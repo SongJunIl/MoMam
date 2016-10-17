@@ -32,7 +32,6 @@
 }
 
 - (IBAction)addButtonTapped:(id)sender {
-   
     MoMamAddButtonDetailViewController *addDetailViewController = [[MoMamAddButtonDetailViewController alloc] init];
     addDetailViewController.view.backgroundColor = [UIColor whiteColor];
     [self presentViewController:addDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
@@ -49,6 +48,7 @@
     }
 }
 
+
 - (UIView *)headerView{
     if(!_headerView){
         [[NSBundle mainBundle] loadNibNamed:@"MoMamCalendarDetailHeaderView" owner:self options:nil];
@@ -56,10 +56,29 @@
     return _headerView;
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        accountBook = [self.accountBookArray objectAtIndex:indexPath.row];
+        [self.context deleteObject:accountBook];
+        [self dataSave];
+        [self.accountBookArray removeObjectAtIndex:indexPath.row];
+        [self.calendarDetailTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+-(void)dataSave{
+    NSError *error;
+    [self.context save:&error];
+    if(error != nil)
+    {
+        NSLog(@"Error :%@",[error localizedFailureReason]);
+    }else{
+        NSLog(@"성공");
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.addButtonTapped.layer.cornerRadius = 20.0f;
     self.calendarDetailTableView.delegate = self;
     self.calendarDetailTableView.dataSource = self;
@@ -122,6 +141,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MoMamReceiptDetailViewController *receiptDetailViewController = [[MoMamReceiptDetailViewController alloc] init];
     [self presentViewController:receiptDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
+
+    receiptDetailViewController.selectCalendarDay.text = accountBook.selectCalendarDay;
+    NSMutableDictionary *dictinoary=(NSMutableDictionary*)[self.accountBookArray objectAtIndex:indexPath.row];
+    receiptDetailViewController.priceText.text =[[dictinoary valueForKey:@"price"] stringValue];
+    receiptDetailViewController.orderNumber.text = [[dictinoary valueForKey:@"accountBookNumber"] stringValue];
+    if([dictinoary valueForKey:@"outlayHistory"]==nil){
+    receiptDetailViewController.history.text =[dictinoary valueForKey:@"incomeHistory"];
+    receiptDetailViewController.classification.text = [dictinoary valueForKey:@"incomeText"];
+    receiptDetailViewController.note.text = [dictinoary valueForKey:@"note"];
+    }else{
+    receiptDetailViewController.history.text =[dictinoary valueForKey:@"outlayHistory"];
+    receiptDetailViewController.classification.text = [dictinoary valueForKey:@"outlayText"];
+    receiptDetailViewController.note.text = [dictinoary valueForKey:@"note"];
+    }
+
 }
 
 -(void)initCoreData
@@ -144,7 +178,7 @@
 
 - (void)loadAccountBookData{
     NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
-   fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
+    fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
                                inManagedObjectContext:self.context];
     
     NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay LIKE %@",self.selectCalendarDay.text];

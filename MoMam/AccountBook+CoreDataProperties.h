@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) NSNumber *outlayKinds;
 @property (nullable, nonatomic, strong) NSString *note;
 @property (nullable, nonatomic, strong) NSNumber *useKinds;
-
+@property (nonatomic) double accountBookNumber;
 @end
 
 NS_ASSUME_NONNULL_END

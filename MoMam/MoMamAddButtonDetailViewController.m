@@ -24,13 +24,16 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *outlayBtn;
 
-
+@property (nonatomic,strong) NSMutableArray *accountBookArray;
 @end
 
 
 
 @implementation MoMamAddButtonDetailViewController
-
+{
+    MoMamCalendarDetailViewController *calendarDetailViewController;
+    double order;
+}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
@@ -52,30 +55,19 @@
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
             [formatter setMaximumFractionDigits:10];
-            
-            // Combine the new text with the old; then remove any
-            // commas from the textField before formatting
+    
             NSString *combinedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
             NSString *numberWithoutCommas = [combinedText stringByReplacingOccurrencesOfString:@"," withString:@""];
             NSNumber *number = [formatter numberFromString:numberWithoutCommas];
             
             NSString *formattedString = [formatter stringFromNumber:number];
             
-            // If the last entry was a decimal or a zero after a decimal,
-            // re-add it here because the formatter will naturally remove
-            // it.
             if ([string isEqualToString:@"."] &&
                 range.location == textField.text.length) {
                 formattedString = [formattedString stringByAppendingString:@"."];
             }
-            
             textField.text = formattedString;
-            
         }
-    
-    // Return no, because either the replacement string is not 
-    // valid or it is and the textfield has already been updated
-    // accordingly
     return NO;
 }
 
@@ -97,10 +89,10 @@
     self.incomeBtn.layer.cornerRadius = 10.0f;
     self.outlayBtn.layer.cornerRadius = 10.0f;
     
-    [self initCoreData];
-    
-    
-   
+  
+}
+- (void)viewWillAppear:(BOOL)animated{
+      [self initCoreData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,8 +101,7 @@
 }
 
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"MoMamAddButtonDetailViewController" owner:self options:nil];
@@ -119,7 +110,7 @@
 }
 
 
-- (IBAction)backButton:(id)sender {
+- (IBAction)backButton:(id)sender{
     
  [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -127,8 +118,7 @@
 
 #pragma mark - UIPickerViewDataSource
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     //컴포넌트 수를 정해주는 메소드
     return 1;
 }
@@ -136,15 +126,12 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     //피커뷰의 몇개의 줄로 할당 될것인지 정해주느 메소드
-    
     if(pickerView == _incomePicker){
         return self.incomeArray.count;
     }else if(pickerView == _outlayPicker){
         return self.outlayArray.count;
     }
-
     return 0;
-    
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -184,38 +171,34 @@
 }
 
 - (IBAction)incomeBtn:(id)sender {
-    
     NSError *error;
     NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"AccountBook" inManagedObjectContext:self.context];
-    
     AccountBook *acc = [[AccountBook alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.context];
     
+    if([self.accountBookArray count] == 0){
+        order = 1.0;
+    }else{
+        order = [[self.accountBookArray lastObject] accountBookNumber] + 1.0;
+    }
+
     acc.selectCalendarDay = self.selectCalendarDay.text;
     acc.price = @([self.price.text stringByReplacingOccurrencesOfString:@"," withString:@""].intValue);
     acc.incomeText = self.incomeText.text;
     acc.incomeHistory = self.incomeHistory.text;
-    acc.useKinds = [NSNumber numberWithInt:1];
-    
+    acc.useKinds = [NSNumber numberWithInt:1];    
+    acc.accountBookNumber=order;
     [self.context save:&error];
     
-    if(error != nil)
-    {
-        NSLog(@"Error :%@",[error localizedFailureReason]);
-    }else{
-         NSLog(@"성공");
-    }
     [self dismissViewControllerAnimated:YES completion:nil];
     [self documentPath];
 }
 
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
 
--(void)initCoreData
-{
+-(void)initCoreData{
     NSError *error;
     // Path to data file.
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/accountBook.db"];
@@ -230,8 +213,26 @@
         _context = [[NSManagedObjectContext alloc] init];
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
-    
+    [self loadAccountBookData];
 }
+
+
+- (void)loadAccountBookData{
+    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+    fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
+                               inManagedObjectContext:self.context];
+    
+    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay LIKE %@",self.selectCalendarDay.text];
+    [fetch setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
+    if (error) {
+        NSLog(@"Failed to fetch objects: %@", [error description]);
+    }
+    self.accountBookArray = [reuslt mutableCopy];
+}
+
 
 -(void)documentPath{
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

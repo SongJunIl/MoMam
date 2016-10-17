@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="AccountBook" representedClassName="AccountBook" syncable="YES">
+        <attribute name="accountBookNumber" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="incomeHistory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="incomeText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,6 +13,6 @@
         <attribute name="useKinds" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AccountBook" positionX="-1845" positionY="-981" width="144" height="178"/>
+        <element name="AccountBook" positionX="-1845" positionY="-981" width="144" height="195"/>
     </elements>
 </model>

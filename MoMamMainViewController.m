@@ -13,6 +13,7 @@
 #import "MoMamCalendarDetailViewController.h"
 #import "MoMamCalendarTableViewCell.h"
 @import CoreData;
+
 @interface MoMamMainViewController () 
 @property (nonatomic,strong) NSManagedObjectContext *context;
 @property (nonatomic,strong) NSMutableArray *accountBookArray;
@@ -21,10 +22,8 @@
 
 @implementation MoMamMainViewController{
     AccountBook *accountBook;
+    int incomePrice;
 }
-
-
-
 - (IBAction)addButtonTapped:(id)sender {
     
     MoMamAddButtonDetailViewController *addDetailViewController = [[MoMamAddButtonDetailViewController alloc] initWithNibName:@"MoMamAddButtonDetailViewController" bundle:nil];
@@ -57,22 +56,18 @@
     [self initCoreData];
     [self.mainTableView reloadData];
 }
--(void)viewDidDisappear:(BOOL)animated{
-    [self.mainTableView reloadData];
-}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
     self.calendarView.calendarViewc.dataSource = self;
     self.calendarView.calendarViewc.delegate = self;
-    self.calendarView.calendarViewc.appearance.cellShape = FSCalendarCellShapeRectangle;
     self.calendarTitle.text = @"MoMam";
     self.mainTableView.delegate=self;
     self.mainTableView.dataSource=self;
     
     UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
     [self.mainTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
-    [self.mainTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,10 +88,10 @@
     cell.price.text = [accountBook.price stringValue];
     if(accountBook.useKinds.intValue == 1){
         cell.classification.text = accountBook.incomeText;
-        cell.history.text = accountBook.incomeHistory;
+        cell.history.text = accountBook.selectCalendarDay;
     }else if(accountBook.useKinds.intValue == 2){
         cell.classification.text = accountBook.outlayText;
-        cell.history.text = accountBook.outlayHistory;
+        cell.history.text = accountBook.selectCalendarDay;
         cell.classification.textColor = [UIColor redColor];
     }
     return cell;
@@ -156,7 +151,5 @@
     }
     self.accountBookArray = [reuslt mutableCopy];
 }
-
-
 
 @end

@@ -10,6 +10,7 @@
                 <outlet property="addButtonTapped" destination="ZXj-Ci-1e4" id="8k3-DC-Ree"/>
                 <outlet property="calendarTitle" destination="QOe-15-S7q" id="Qoa-hY-Kka"/>
                 <outlet property="calendarView" destination="FHn-bd-EsJ" id="2WF-U2-Vqh"/>
+                <outlet property="detailView" destination="nuG-h1-GZF" id="oda-Oh-xcs"/>
                 <outlet property="mainTableView" destination="Kmi-0z-2ST" id="7uZ-zU-zob"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

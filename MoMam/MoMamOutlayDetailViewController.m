@@ -14,20 +14,20 @@
 @property (weak, nonatomic) IBOutlet UIButton *checkCardBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cardBtn;
 @property (nonatomic,strong) NSManagedObjectContext *context;
+@property (nonatomic,strong) NSMutableArray *accountBookArray;
 @end
 
 @implementation MoMamOutlayDetailViewController{
     AccountBook *acc;
+    double order;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     self.cashBtn.layer.cornerRadius = 10.0f;
     self.checkCardBtn.layer.cornerRadius = 10.0f;
     self.cardBtn.layer.cornerRadius = 10.0f;
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,11 +64,19 @@
 -(void)outlayInfo{
     NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"AccountBook" inManagedObjectContext:self.context];
     acc = [[AccountBook alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.context];
+    
     acc.selectCalendarDay = self.selectCalendarDay.text;
     acc.price = @([self.price.text stringByReplacingOccurrencesOfString:@"," withString:@""].intValue);
     acc.outlayText = self.outlayText.text;
     acc.outlayHistory = self.outlayHistroy.text;
     acc.useKinds = [NSNumber numberWithInt:2];
+    if([self.accountBookArray count] == 0){
+        order = 1.0;
+    }else{
+        order = [[self.accountBookArray lastObject] accountBookNumber] + 1.0;
+    }
+    acc.accountBookNumber = order;
+
 }
 -(void)dataSave{
     NSError *error;
@@ -81,9 +89,7 @@
         NSLog(@"성공");
     }
 }
-
--(void)initCoreData
-{
+-(void)initCoreData{
     NSError *error;
     // Path to data file.
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/accountBook.db"];
@@ -98,6 +104,22 @@
         _context = [[NSManagedObjectContext alloc] init];
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
-    
+    [self loadAccountBookData];
 }
+- (void)loadAccountBookData{
+    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+    fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
+                               inManagedObjectContext:self.context];
+    
+    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay LIKE %@",self.selectCalendarDay.text];
+    [fetch setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
+    if (error) {
+        NSLog(@"Failed to fetch objects: %@", [error description]);
+    }
+    self.accountBookArray = [reuslt mutableCopy];
+}
+
 @end
