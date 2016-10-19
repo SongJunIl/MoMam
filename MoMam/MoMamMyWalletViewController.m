@@ -7,14 +7,66 @@
 //
 
 #import "MoMamMyWalletViewController.h"
-
+@import CoreData;
 @interface MoMamMyWalletViewController ()
-
-
-
+@property (nonatomic,strong) NSManagedObjectContext *context;
+@property (nonatomic,strong) NSMutableDictionary *accountBookArray;
+@property (nonatomic,strong) NSNumber *incomeTotalInfo;
+@property (nonatomic,strong) NSNumber *outlayTotalInfo;
+@property (nonatomic,strong) NSNumber *moneyOutlayInfo;
+@property (nonatomic,strong) NSNumber *cardOutlayInfo;
+@property (nonatomic,strong) NSNumber *incomeMoneyInfo;
 @end
 
-@implementation MoMamMyWalletViewController
+@implementation MoMamMyWalletViewController{
+    int incomePrices;
+    int incomeMoneys;
+    int moneyOutlays;
+    int outlayPrices;
+    int cardOutlays;
+}
+-(void)viewDidAppear:(BOOL)animated{
+    for(int i =0; i<self.accountBookArray.count; i++){
+    if([[[self.accountBookArray valueForKey:@"useKinds"]objectAtIndex:i]intValue] == 1){
+        incomeMoneys += [[[self.accountBookArray valueForKey:@"price"] objectAtIndex:i]intValue];
+        self.incomeMoneyInfo = @(incomeMoneys);
+    }else if([[[self.accountBookArray valueForKey:@"useKinds"]objectAtIndex:i ] intValue] == 2 ){
+        outlayPrices += [[[self.accountBookArray valueForKey:@"price"]objectAtIndex:i ] intValue];
+        self.outlayTotalInfo = @(outlayPrices);
+        if([[[self.accountBookArray valueForKey:@"outlayKinds"]objectAtIndex:i ]intValue] == 1 ){
+            moneyOutlays += [[[self.accountBookArray valueForKey:@"price"] objectAtIndex:i]intValue];
+            self.moneyOutlayInfo =@(moneyOutlays);
+        }else{
+            cardOutlays += [[[self.accountBookArray valueForKey:@"price"] objectAtIndex:i]intValue];
+            self.cardOutlayInfo =@(cardOutlays);
+        }
+    }
+    incomePrices = incomeMoneys - outlayPrices;
+    self.incomeTotalInfo =@(incomePrices);
+    }
+
+    self.assetsTotal.text = self.incomeTotalInfo.stringValue;
+    self.incomeTotal.text = self.incomeMoneyInfo.stringValue;
+    self.outlayTotal.text =self.outlayTotalInfo.stringValue;
+    self.moneyOutlayTotal.text = self.moneyOutlayInfo.stringValue;
+    self.cardOutlayTotal.text = self.cardOutlayInfo.stringValue;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self initCoreData];
+    incomePrices = 0;
+    outlayPrices = 0;
+    moneyOutlays = 0;
+    cardOutlays = 0;
+    incomeMoneys =0;
+    self.incomeMoneyInfo =@(0);
+    self.incomeTotalInfo =@(0);
+    self.outlayTotalInfo =@(0);
+    self.moneyOutlayInfo =@(0);
+    self.cardOutlayInfo  =@(0);
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +100,35 @@
     }
     return self;
 }
+
+-(void)initCoreData{
+    NSError *error;
+    // Path to data file.
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/accountBook.db"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]){
+        NSLog(@"Error: %@", [error localizedFailureReason]);
+    }else{
+        _context = [[NSManagedObjectContext alloc] init];
+        [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
+    }
+    [self loadAccountBookData];
+}
+
+- (void)loadAccountBookData{
+    NSError *error = nil;
+    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+    fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
+                               inManagedObjectContext:self.context];
+    NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
+    if (error) {
+        NSLog(@"Failed to fetch objects: %@", [error description]);
+    }
+    self.accountBookArray = [reuslt mutableCopy];
+}
+
 
 
 @end

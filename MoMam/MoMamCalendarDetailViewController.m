@@ -19,11 +19,20 @@
 @property (weak, nonatomic) IBOutlet UITableView *calendarDetailTableView;
 @property (nonatomic,strong) IBOutlet UIView *headerView;
 @property (nonatomic,strong) NSMutableArray *accountBookArray;
+@property (nonatomic,strong) NSMutableDictionary *dictinoary;
+@property (nonatomic,strong) NSNumber *incomeTotal;
+@property (nonatomic,strong) NSNumber *outlayTotal;
+@property (nonatomic,strong) NSNumber *moneyOutlayInfo;
+@property (nonatomic,strong) NSNumber *cardOutlayInfo;
 @end
 
 @implementation MoMamCalendarDetailViewController 
 {
    AccountBook *accountBook;
+    int incomePrice;
+    int moneyOutlays;
+    int outlayPrice;
+    int cardOutlays;
 }
 - (IBAction)backButton:(id)sender {
     
@@ -46,8 +55,8 @@
         [sender setTitle:@"닫기" forState:UIControlStateNormal];
         [self.calendarDetailTableView setEditing:YES animated:YES];
     }
+   
 }
-
 
 - (UIView *)headerView{
     if(!_headerView){
@@ -64,8 +73,8 @@
         [self.accountBookArray removeObjectAtIndex:indexPath.row];
         [self.calendarDetailTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
-}
 
+}
 -(void)dataSave{
     NSError *error;
     [self.context save:&error];
@@ -94,17 +103,28 @@
 -(void)viewWillAppear:(BOOL)animated{
     [self initCoreData];
     [self.calendarDetailTableView reloadData];
-    
+    incomePrice = 0;
+    outlayPrice = 0;
+    moneyOutlays = 0;
+    cardOutlays = 0;
+    self.incomeTotal =@(0);
+    self.outlayTotal =@(0);
+    self.moneyOutlayInfo =@(0);
+    self.cardOutlayInfo  =@(0);
 }
+-(void)viewDidAppear:(BOOL)animated{
+    self.income.text = self.incomeTotal.stringValue;
+    self.totalOutlay.text =self.outlayTotal.stringValue;
+    self.moneyOutlay.text = self.moneyOutlayInfo.stringValue;
+    self.cardOutlay.text = self.cardOutlayInfo.stringValue;
 
-
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"MoMamCalendarDetailViewController" owner:self options:nil];
@@ -112,16 +132,11 @@
     return self;
 }
 
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.accountBookArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MoMamCalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
     accountBook = [self.accountBookArray objectAtIndex:indexPath.row];
     
@@ -130,7 +145,7 @@
     if(accountBook.useKinds.intValue == 1){
         cell.classification.text = accountBook.incomeText;
         cell.history.text = accountBook.incomeHistory;
-    }else{
+    }else if(accountBook.useKinds.intValue ==2 ){
         cell.classification.text = accountBook.outlayText;
         cell.history.text = accountBook.outlayHistory;
         cell.classification.textColor=[UIColor redColor];
@@ -157,6 +172,32 @@
     }
 
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.dictinoary =(NSMutableDictionary*)[self.accountBookArray objectAtIndex:indexPath.row];
+    
+    if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 1){
+        incomePrice += [[self.dictinoary valueForKey:@"price"]intValue];
+        self.incomeTotal = @(incomePrice);
+        NSLog(@"총 수입 : %d",incomePrice);
+        
+    }else if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 2 ){
+        outlayPrice += [[self.dictinoary valueForKey:@"price"] intValue];
+        self.outlayTotal = @(outlayPrice);
+        NSLog(@"총 소비 : %d",outlayPrice);
+        if([[self.dictinoary valueForKey:@"outlayKinds"] intValue] == 1 ){
+            moneyOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.moneyOutlayInfo =@(moneyOutlays);
+            NSLog(@"현금 총소비 %d",moneyOutlays);
+        }else{
+            cardOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.cardOutlayInfo =@(cardOutlays);
+            NSLog(@"카드 총소비 %d",cardOutlays);
+        }
+    }
+
+}
+
 
 -(void)initCoreData
 {

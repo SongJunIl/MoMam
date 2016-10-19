@@ -12,17 +12,28 @@
 #import "MoMamAddButtonDetailViewController.h"
 #import "MoMamCalendarDetailViewController.h"
 #import "MoMamCalendarTableViewCell.h"
+#import "MoMamMyWalletViewController.h"
 @import CoreData;
 
 @interface MoMamMainViewController () 
 @property (nonatomic,strong) NSManagedObjectContext *context;
 @property (nonatomic,strong) NSMutableArray *accountBookArray;
-
+@property (nonatomic,strong) NSNumber *incomeTotal;
+@property (nonatomic,strong) NSNumber *outlayTotal;
+@property (nonatomic,strong) NSNumber *moneyOutlay;
+@property (nonatomic,strong) NSNumber *cardOutlay;
+@property (nonatomic,strong) NSNumber *incomeMoney;
+@property (nonatomic,strong) NSMutableDictionary *dictinoary;
 @end
 
 @implementation MoMamMainViewController{
     AccountBook *accountBook;
+    MoMamCalendarTableViewCell *cell;
     int incomePrice;
+    int incomeMoneys;
+    int moneyOutlays;
+    int outlayPrice;
+    int cardOutlays;
 }
 - (IBAction)addButtonTapped:(id)sender {
     
@@ -55,8 +66,25 @@
 -(void)viewWillAppear:(BOOL)animated{
     [self initCoreData];
     [self.mainTableView reloadData];
+    incomePrice = 0;
+    outlayPrice = 0;
+    moneyOutlays = 0;
+    cardOutlays = 0;
+    incomeMoneys =0;
+    self.incomeMoney =@(0);
+    self.incomeTotal =@(0);
+    self.outlayTotal =@(0);
+    self.moneyOutlay =@(0);
+    self.cardOutlay  =@(0);
+   
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    self.detailView.income.text = self.incomeTotal.stringValue;
+    self.detailView.totalOutlay.text =self.outlayTotal.stringValue;
+    self.detailView.moneyOutlay.text = self.moneyOutlay.stringValue;
+    self.detailView.cardOutlay.text = self.cardOutlay.stringValue;
+    self.detailView.money.text = self.incomeMoney.stringValue;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,6 +96,9 @@
     
     UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
     [self.mainTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
+    
+    
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,9 +114,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MoMamCalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
     accountBook = [self.accountBookArray objectAtIndex:indexPath.row];
     cell.price.text = [accountBook.price stringValue];
+    
     if(accountBook.useKinds.intValue == 1){
         cell.classification.text = accountBook.incomeText;
         cell.history.text = accountBook.selectCalendarDay;
@@ -109,22 +141,43 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                             NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
     calendarDetailViewController.selectCalendarDay.text = [NSString stringWithFormat:@"%ld/%ld/%ld", components.year,(long)components.month,(long)components.day];
-   
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.dictinoary =(NSMutableDictionary*)[self.accountBookArray objectAtIndex:indexPath.row];
+   
+    if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 1){
+            incomePrice += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.incomeTotal = @(incomePrice);
+            NSLog(@"총 수입 : %d",incomePrice);
+    }else if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 2 ){
+            outlayPrice += [[self.dictinoary valueForKey:@"price"] intValue];
+            self.outlayTotal = @(outlayPrice);
+            NSLog(@"총 소비 : %d",outlayPrice);
+        if([[self.dictinoary valueForKey:@"outlayKinds"] intValue] == 1 ){
+            moneyOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.moneyOutlay =@(moneyOutlays);
+            NSLog(@"현금 총소비 %d",moneyOutlays);
+        }else{
+            cardOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.cardOutlay =@(cardOutlays);
+            NSLog(@"카드 총소비 %d",cardOutlays);
+        }
+    }
+    incomeMoneys = incomePrice - outlayPrice;
+    self.incomeMoney =@(incomeMoneys);
+}
 
--(void)initCoreData
-{
+-(void)initCoreData{
     NSError *error;
     // Path to data file.
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/accountBook.db"];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error])
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]){
         NSLog(@"Error: %@", [error localizedFailureReason]);
-    else
-    {
+    }else{
         _context = [[NSManagedObjectContext alloc] init];
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
@@ -132,6 +185,7 @@
 }
 
 - (void)loadAccountBookData{
+    NSError *error = nil;
     NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
     fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
                                inManagedObjectContext:self.context];
@@ -144,12 +198,15 @@
     NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",day];
     [fetch setPredicate:predicate];
     
-    NSError *error = nil;
+   
     NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
     if (error) {
         NSLog(@"Failed to fetch objects: %@", [error description]);
     }
     self.accountBookArray = [reuslt mutableCopy];
+   
 }
 
+
+   
 @end

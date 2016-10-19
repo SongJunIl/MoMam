@@ -9,7 +9,11 @@
             <connections>
                 <outlet property="addButtonTapped" destination="tfa-dn-Lac" id="PlX-cG-PXC"/>
                 <outlet property="calendarDetailTableView" destination="MKu-KY-Ibc" id="67Y-2b-Ee5"/>
+                <outlet property="cardOutlay" destination="Nhl-3k-dt0" id="OPD-K0-UyO"/>
+                <outlet property="income" destination="2H7-9G-op6" id="cKh-hE-3L5"/>
+                <outlet property="moneyOutlay" destination="5QV-Rm-jyh" id="OCg-Ig-vCY"/>
                 <outlet property="selectCalendarDay" destination="rbg-Ru-1Pb" id="lhO-lp-VCQ"/>
+                <outlet property="totalOutlay" destination="h9D-1f-MGF" id="7eM-Zy-brm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
