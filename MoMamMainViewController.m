@@ -35,77 +35,54 @@
     int outlayPrice;
     int cardOutlays;
 }
+
 - (IBAction)addButtonTapped:(id)sender {
-    
     MoMamAddButtonDetailViewController *addDetailViewController = [[MoMamAddButtonDetailViewController alloc] initWithNibName:@"MoMamAddButtonDetailViewController" bundle:nil];
-    
     addDetailViewController.view.backgroundColor = [UIColor whiteColor];
     [self presentViewController:addDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
-    
     FSCalendar *calendar = [[FSCalendar alloc] init];
     NSDate *today = [[NSDate alloc] init];
     today = calendar.today;
-   
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                                     NSCalendarUnitMonth | NSCalendarUnitYear fromDate:today];
     addDetailViewController.selectCalendarDay.text = [NSString stringWithFormat:@"%ld/%ld/%ld", (long)components.year,(long)components.month,(long)components.day];
-    
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
     if(self){
         self.tabBarItem.title = @"홈";
         UIImage *home = [UIImage imageNamed:@"house@2x.png"];
         self.tabBarItem.image = home;
     }
     return self;
-    
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [self initCoreData];
     [self.mainTableView reloadData];
-    incomePrice = 0;
-    outlayPrice = 0;
-    moneyOutlays = 0;
-    cardOutlays = 0;
-    incomeMoneys =0;
-    self.incomeMoney =@(0);
-    self.incomeTotal =@(0);
-    self.outlayTotal =@(0);
-    self.moneyOutlay =@(0);
-    self.cardOutlay  =@(0);
-   
+    [self setupLabelDataInit];
+    
 }
+
 -(void)viewDidAppear:(BOOL)animated{
-    self.detailView.income.text = self.incomeTotal.stringValue;
-    self.detailView.totalOutlay.text =self.outlayTotal.stringValue;
-    self.detailView.moneyOutlay.text = self.moneyOutlay.stringValue;
-    self.detailView.cardOutlay.text = self.cardOutlay.stringValue;
-    self.detailView.money.text = self.incomeMoney.stringValue;
+    [self setupLabelTextSetting];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.calendarView.calendarViewc.dataSource = self;
-    self.calendarView.calendarViewc.delegate = self;
-    self.calendarTitle.text = @"MoMam";
-    self.mainTableView.delegate=self;
-    self.mainTableView.dataSource=self;
+    [self delegateAndDataSourceSetting];
     
+    
+    self.calendarTitle.text = @"MoMam";
     UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
     [self.mainTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
-    
-    
-   
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -116,7 +93,7 @@
 {
     cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
     accountBook = [self.accountBookArray objectAtIndex:indexPath.row];
-    cell.price.text = [accountBook.price stringValue];
+    cell.price.text = [self labelTextStyle:accountBook.price];
     
     if(accountBook.useKinds.intValue == 1){
         cell.classification.text = accountBook.incomeText;
@@ -194,11 +171,9 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                                     NSCalendarUnitMonth | NSCalendarUnitYear fromDate:today];
     NSString *day = [NSString stringWithFormat:@"%ld/%ld", components.year,(long)components.month];
-    NSLog(@"%@",day);
     NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",day];
     [fetch setPredicate:predicate];
     
-   
     NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
     if (error) {
         NSLog(@"Failed to fetch objects: %@", [error description]);
@@ -206,7 +181,34 @@
     self.accountBookArray = [reuslt mutableCopy];
    
 }
-
-
-   
+-(void)setupLabelDataInit{
+    incomePrice = 0;
+    outlayPrice = 0;
+    moneyOutlays = 0;
+    cardOutlays = 0;
+    incomeMoneys =0;
+    self.incomeMoney =@(0);
+    self.incomeTotal =@(0);
+    self.outlayTotal =@(0);
+    self.moneyOutlay =@(0);
+    self.cardOutlay  =@(0);
+}
+-(void)setupLabelTextSetting{
+//    NSString *test = [NSNumberFormatter localizedStringFromNumber:@(self.incomeTotal.intValue) numberStyle:NSNumberFormatterDecimalStyle];
+    self.detailView.income.text = [self labelTextStyle:self.incomeTotal];
+    self.detailView.totalOutlay.text =[self labelTextStyle:self.outlayTotal];
+    self.detailView.moneyOutlay.text = [self labelTextStyle:self.self.moneyOutlay];
+    self.detailView.cardOutlay.text = [self labelTextStyle:self.self.cardOutlay];
+    self.detailView.money.text = [self labelTextStyle:self.incomeMoney];
+}
+- (void)delegateAndDataSourceSetting{
+    self.calendarView.calendarViewc.dataSource = self;
+    self.calendarView.calendarViewc.delegate = self;
+    self.mainTableView.delegate=self;
+    self.mainTableView.dataSource=self;
+}
+-(NSString *)labelTextStyle:(NSNumber*)labelText{
+    NSString *label = [NSNumberFormatter localizedStringFromNumber:labelText numberStyle:NSNumberFormatterDecimalStyle];
+    return label;
+}
 @end

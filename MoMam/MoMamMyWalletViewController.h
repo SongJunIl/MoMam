@@ -14,10 +14,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *outlayTotal;
 @property (weak, nonatomic) IBOutlet UILabel *moneyOutlayTotal;
 @property (weak, nonatomic) IBOutlet UILabel *cardOutlayTotal;
-
-
-
-
-
-
 @end

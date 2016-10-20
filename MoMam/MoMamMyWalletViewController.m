@@ -44,28 +44,14 @@
     incomePrices = incomeMoneys - outlayPrices;
     self.incomeTotalInfo =@(incomePrices);
     }
-
-    self.assetsTotal.text = self.incomeTotalInfo.stringValue;
-    self.incomeTotal.text = self.incomeMoneyInfo.stringValue;
-    self.outlayTotal.text =self.outlayTotalInfo.stringValue;
-    self.moneyOutlayTotal.text = self.moneyOutlayInfo.stringValue;
-    self.cardOutlayTotal.text = self.cardOutlayInfo.stringValue;
+    [self setupLabelTextSetting];
+    
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self initCoreData];
-    incomePrices = 0;
-    outlayPrices = 0;
-    moneyOutlays = 0;
-    cardOutlays = 0;
-    incomeMoneys =0;
-    self.incomeMoneyInfo =@(0);
-    self.incomeTotalInfo =@(0);
-    self.outlayTotalInfo =@(0);
-    self.moneyOutlayInfo =@(0);
-    self.cardOutlayInfo  =@(0);
-
+    [self setupLabelDataInit];
 }
 
 - (void)viewDidLoad {
@@ -75,22 +61,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"MoMamMyWalletViewController" owner:self options:nil];
     }
     return self;
 }
-
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
     if(self){
         UITabBarItem *myWallet  = self.tabBarItem;
         
@@ -129,6 +110,28 @@
     self.accountBookArray = [reuslt mutableCopy];
 }
 
+-(NSString *)labelTextStyle:(NSNumber*)labelText{
+    NSString *label = [NSNumberFormatter localizedStringFromNumber:labelText numberStyle:NSNumberFormatterDecimalStyle];
+    return label;
+}
 
-
+-(void)setupLabelDataInit{
+    incomePrices = 0;
+    outlayPrices = 0;
+    moneyOutlays = 0;
+    cardOutlays = 0;
+    incomeMoneys =0;
+    self.incomeMoneyInfo =@(0);
+    self.incomeTotalInfo =@(0);
+    self.outlayTotalInfo =@(0);
+    self.moneyOutlayInfo =@(0);
+    self.cardOutlayInfo  =@(0);
+}
+-(void)setupLabelTextSetting{
+    self.assetsTotal.text = [self labelTextStyle:self.incomeTotalInfo];
+    self.incomeTotal.text = [self labelTextStyle:self.incomeMoneyInfo];
+    self.outlayTotal.text =[self labelTextStyle:self.outlayTotalInfo];
+    self.moneyOutlayTotal.text = [self labelTextStyle:self.moneyOutlayInfo];
+    self.cardOutlayTotal.text = [self labelTextStyle:self.cardOutlayInfo];
+}
 @end

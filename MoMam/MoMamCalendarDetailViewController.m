@@ -24,10 +24,10 @@
 @property (nonatomic,strong) NSNumber *outlayTotal;
 @property (nonatomic,strong) NSNumber *moneyOutlayInfo;
 @property (nonatomic,strong) NSNumber *cardOutlayInfo;
+@property (nonatomic,strong) NSManagedObjectContext *context;
 @end
 
-@implementation MoMamCalendarDetailViewController 
-{
+@implementation MoMamCalendarDetailViewController {
    AccountBook *accountBook;
     int incomePrice;
     int moneyOutlays;
@@ -35,9 +35,7 @@
     int cardOutlays;
 }
 - (IBAction)backButton:(id)sender {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 - (IBAction)addButtonTapped:(id)sender {
@@ -55,7 +53,6 @@
         [sender setTitle:@"닫기" forState:UIControlStateNormal];
         [self.calendarDetailTableView setEditing:YES animated:YES];
     }
-   
 }
 
 - (UIView *)headerView{
@@ -73,7 +70,6 @@
         [self.accountBookArray removeObjectAtIndex:indexPath.row];
         [self.calendarDetailTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
-
 }
 -(void)dataSave{
     NSError *error;
@@ -85,39 +81,20 @@
         NSLog(@"성공");
     }
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupDelegateAndDataSource];
+    [self setupTableCellorHeader];
     self.addButtonTapped.layer.cornerRadius = 20.0f;
-    self.calendarDetailTableView.delegate = self;
-    self.calendarDetailTableView.dataSource = self;
-    
-    UIView *header = self.headerView;
-    [self.calendarDetailTableView setTableHeaderView:header];
-    
-    UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
-    [self.calendarDetailTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
-     self.accountBookArray = [[NSMutableArray alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self initCoreData];
+    [self setupLabelDataInit];
     [self.calendarDetailTableView reloadData];
-    incomePrice = 0;
-    outlayPrice = 0;
-    moneyOutlays = 0;
-    cardOutlays = 0;
-    self.incomeTotal =@(0);
-    self.outlayTotal =@(0);
-    self.moneyOutlayInfo =@(0);
-    self.cardOutlayInfo  =@(0);
 }
 -(void)viewDidAppear:(BOOL)animated{
-    self.income.text = self.incomeTotal.stringValue;
-    self.totalOutlay.text =self.outlayTotal.stringValue;
-    self.moneyOutlay.text = self.moneyOutlayInfo.stringValue;
-    self.cardOutlay.text = self.cardOutlayInfo.stringValue;
-
+    [self setupLabelTextSetting];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -140,7 +117,7 @@
     MoMamCalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
     accountBook = [self.accountBookArray objectAtIndex:indexPath.row];
     
-    cell.price.text = [accountBook.price stringValue];
+    cell.price.text = [self labelTextStyle:accountBook.price];
    
     if(accountBook.useKinds.intValue == 1){
         cell.classification.text = accountBook.incomeText;
@@ -156,10 +133,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MoMamReceiptDetailViewController *receiptDetailViewController = [[MoMamReceiptDetailViewController alloc] init];
     [self presentViewController:receiptDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
-
     receiptDetailViewController.selectCalendarDay.text = accountBook.selectCalendarDay;
     NSMutableDictionary *dictinoary=(NSMutableDictionary*)[self.accountBookArray objectAtIndex:indexPath.row];
-    receiptDetailViewController.priceText.text =[[dictinoary valueForKey:@"price"] stringValue];
+    receiptDetailViewController.priceText.text =[self labelTextStyle:[dictinoary valueForKey:@"price"]];
     receiptDetailViewController.orderNumber.text = [[dictinoary valueForKey:@"accountBookNumber"] stringValue];
     if([dictinoary valueForKey:@"outlayHistory"]==nil){
     receiptDetailViewController.history.text =[dictinoary valueForKey:@"incomeHistory"];
@@ -180,7 +156,6 @@
         incomePrice += [[self.dictinoary valueForKey:@"price"]intValue];
         self.incomeTotal = @(incomePrice);
         NSLog(@"총 수입 : %d",incomePrice);
-        
     }else if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 2 ){
         outlayPrice += [[self.dictinoary valueForKey:@"price"] intValue];
         self.outlayTotal = @(outlayPrice);
@@ -233,6 +208,38 @@
     self.accountBookArray = [reuslt mutableCopy];
 }
 
+-(void)setupLabelDataInit{
+    incomePrice = 0;
+    outlayPrice = 0;
+    moneyOutlays = 0;
+    cardOutlays = 0;
+    self.incomeTotal =@(0);
+    self.outlayTotal =@(0);
+    self.moneyOutlayInfo =@(0);
+    self.cardOutlayInfo  =@(0);
 
+}
+-(void)setupTableCellorHeader{
+    UIView *header = self.headerView;
+    [self.calendarDetailTableView setTableHeaderView:header];
+    
+    UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
+    [self.calendarDetailTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
+    self.accountBookArray = [[NSMutableArray alloc] init];
+}
+-(void)setupDelegateAndDataSource{
+    self.calendarDetailTableView.delegate = self;
+    self.calendarDetailTableView.dataSource = self;
+}
+-(void)setupLabelTextSetting{
+    self.income.text = [self labelTextStyle:self.incomeTotal];
+    self.totalOutlay.text =[self labelTextStyle:self.outlayTotal];
+    self.moneyOutlay.text = [self labelTextStyle:self.moneyOutlayInfo];
+    self.cardOutlay.text = [self labelTextStyle:self.cardOutlayInfo];
+}
+-(NSString *)labelTextStyle:(NSNumber*)labelText{
+    NSString *label = [NSNumberFormatter localizedStringFromNumber:labelText numberStyle:NSNumberFormatterDecimalStyle];
+    return label;
+}
 
 @end

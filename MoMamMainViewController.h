@@ -13,7 +13,7 @@
 #import "MoMamDetail.h"
 @class MoMamAddButtonDetailViewController;
 
-@interface MoMamMainViewController : UIViewController <FSCalendarDelegate,FSCalendarDataSource,UITableViewDelegate,UITableViewDataSource>
+@interface MoMamMainViewController : UIViewController <FSCalendarDelegate,FSCalendarDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
     
 @property (weak, nonatomic) IBOutlet MoMamDeTail *detailView;
 

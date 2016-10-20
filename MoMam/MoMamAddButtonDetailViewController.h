@@ -29,8 +29,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *outlayHistory;
 
--(IBAction)incomeBtn:(id)sender;
-- (void)initCoreData;
 @property (nonatomic,strong) NSManagedObjectContext *context;
+
 @property (nonatomic,strong) NSArray *object;
+
+-(IBAction)incomeBtn:(id)sender;
+
 @end

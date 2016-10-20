@@ -21,18 +21,12 @@
     AccountBook *acc;
     double order;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.cashBtn.layer.cornerRadius = 10.0f;
-    self.checkCardBtn.layer.cornerRadius = 10.0f;
-    self.cardBtn.layer.cornerRadius = 10.0f;
+    [self setupBtnsCornerRadius];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 - (IBAction)backButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -76,12 +70,10 @@
         order = [[self.accountBookArray lastObject] accountBookNumber] + 1.0;
     }
     acc.accountBookNumber = order;
-
 }
 -(void)dataSave{
     NSError *error;
     [self.context save:&error];
-    
     if(error != nil)
     {
         NSLog(@"Error :%@",[error localizedFailureReason]);
@@ -120,6 +112,11 @@
         NSLog(@"Failed to fetch objects: %@", [error description]);
     }
     self.accountBookArray = [reuslt mutableCopy];
+}
+-(void)setupBtnsCornerRadius{
+    self.cashBtn.layer.cornerRadius = 10.0f;
+    self.checkCardBtn.layer.cornerRadius = 10.0f;
+    self.cardBtn.layer.cornerRadius = 10.0f;
 }
 
 @end

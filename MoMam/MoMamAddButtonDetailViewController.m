@@ -15,32 +15,22 @@
 @import CoreData;
 
 @interface MoMamAddButtonDetailViewController ()
-
 @property (nonatomic,strong) NSMutableArray *incomeArray;
-
 @property (nonatomic,strong) NSMutableArray *outlayArray;
-
 @property (weak, nonatomic) IBOutlet UIButton *incomeBtn;
-
 @property (weak, nonatomic) IBOutlet UIButton *outlayBtn;
-
 @property (nonatomic,strong) NSMutableArray *accountBookArray;
 @end
 
-
-
-@implementation MoMamAddButtonDetailViewController
-{
+@implementation MoMamAddButtonDetailViewController{
     MoMamCalendarDetailViewController *calendarDetailViewController;
     double order;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
     if (([string isEqualToString:@"0"] || [string isEqualToString:@""]) && [textField.text rangeOfString:@"."].location < range.location) {
         return YES;
     }
-    
     // First check whether the replacement string's numeric...
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
@@ -50,7 +40,6 @@
         [string isEqualToString:@""] ||
         ([string isEqualToString:@"."] &&
          [textField.text rangeOfString:@"."].location == NSNotFound)) {
-            
             // Create the decimal style formatter
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -73,34 +62,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.price.delegate=self;
-    self.incomePicker.delegate=self;
-    self.incomePicker.dataSource=self;
-    self.outlayPicker.delegate=self;
-    self.outlayPicker.dataSource=self;
-    
-    self.incomeArray = [[NSMutableArray alloc]initWithObjects:@"월급",@"용돈",@"이월",nil];
-    self.incomeText.text = [self.incomeArray objectAtIndex:0];
-    
-    self.outlayArray = [[NSMutableArray alloc] initWithObjects:@"카드대금",@"저축",@"식비",@"교통비",@"문화생활",nil];
-    self.outlayText.text = [self.outlayArray objectAtIndex:0];
-    
-    self.incomeBtn.layer.cornerRadius = 10.0f;
-    self.outlayBtn.layer.cornerRadius = 10.0f;
-    
-  
+    [self delegateAndDataSourceSetting];
+    [self setupArrayDataSetting];
+    [self setupBtnsCornerRadius];
 }
 - (void)viewWillAppear:(BOOL)animated{
       [self initCoreData];
+      [self loadAccountBookData];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -109,23 +82,17 @@
     return self;
 }
 
-
 - (IBAction)backButton:(id)sender{
     
  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 #pragma mark - UIPickerViewDataSource
-
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    //컴포넌트 수를 정해주는 메소드
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    //피커뷰의 몇개의 줄로 할당 될것인지 정해주느 메소드
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     if(pickerView == _incomePicker){
         return self.incomeArray.count;
     }else if(pickerView == _outlayPicker){
@@ -135,52 +102,40 @@
 }
 
 #pragma mark - UIPickerViewDelegate
-
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    //각 row에 출력해줄 이름을 반환
-    
     if(pickerView == _incomePicker){
         return [self.incomeArray objectAtIndex:row];
-              
     }else if(pickerView == _outlayPicker){
         return [self.outlayArray objectAtIndex:row];
     }
-
     return 0;
     
 }
-
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    //피커뷰의 내용이 선택되었을 때 실행되는 델리게이트 메소드입니다.
     if(pickerView == _incomePicker){
     self.incomeText.text = [self pickerView:pickerView titleForRow:row forComponent:component];
     }else if(pickerView == _outlayPicker){
     self.outlayText.text = [self pickerView:pickerView titleForRow:row forComponent:component];
     }
 }
-- (IBAction)outlayBtn:(id)sender {
-    
+- (IBAction)outlayBtn:(id)sender{
     MoMamOutlayDetailViewController *outlayDetailViewController = [[MoMamOutlayDetailViewController alloc] init];
      [self presentViewController:outlayDetailViewController animated:UIPopoverArrowDirectionRight completion:nil];
-    
     outlayDetailViewController.selectCalendarDay.text = self.selectCalendarDay.text;
     outlayDetailViewController.price.text=self.price.text;
     outlayDetailViewController.outlayText.text=self.outlayText.text;
     outlayDetailViewController.outlayHistroy.text =self.outlayHistory.text;
-    
 }
 
-- (IBAction)incomeBtn:(id)sender {
+- (IBAction)incomeBtn:(id)sender{
     NSError *error;
     NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"AccountBook" inManagedObjectContext:self.context];
     AccountBook *acc = [[AccountBook alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.context];
-    
     if([self.accountBookArray count] == 0){
         order = 1.0;
     }else{
         order = [[self.accountBookArray lastObject] accountBookNumber] + 1.0;
     }
-
     acc.selectCalendarDay = self.selectCalendarDay.text;
     acc.price = @([self.price.text stringByReplacingOccurrencesOfString:@"," withString:@""].intValue);
     acc.incomeText = self.incomeText.text;
@@ -192,7 +147,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     [self documentPath];
 }
-
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
@@ -213,18 +167,13 @@
         _context = [[NSManagedObjectContext alloc] init];
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
-    [self loadAccountBookData];
 }
-
 
 - (void)loadAccountBookData{
     NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
-    fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
-                               inManagedObjectContext:self.context];
-    
+    fetch.entity = [NSEntityDescription entityForName:@"AccountBook" inManagedObjectContext:self.context];
     NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay LIKE %@",self.selectCalendarDay.text];
     [fetch setPredicate:predicate];
-    
     NSError *error = nil;
     NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
     if (error) {
@@ -233,11 +182,28 @@
     self.accountBookArray = [reuslt mutableCopy];
 }
 
-
 -(void)documentPath{
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentDir = [paths objectAtIndex:0];
     NSLog(@"%@", documentDir);
+}
+- (void)delegateAndDataSourceSetting{
+    self.price.delegate=self;
+    self.incomePicker.delegate=self;
+    self.incomePicker.dataSource=self;
+    self.outlayPicker.delegate=self;
+    self.outlayPicker.dataSource=self;
+}
+- (void)setupArrayDataSetting{
+    //@"월급",@"용돈",@"이월"
+    self.incomeArray =[[NSMutableArray alloc] initWithObjects:@"월급",@"용돈",@"이월",nil];
+    self.incomeText.text = [self.incomeArray objectAtIndex:0];
+    self.outlayArray = [[NSMutableArray alloc] initWithObjects:@"카드대금",@"저축",@"식비",@"교통비",@"문화생활",nil];
+    self.outlayText.text = [self.outlayArray objectAtIndex:0];
+}
+- (void)setupBtnsCornerRadius{
+    self.incomeBtn.layer.cornerRadius = 10.0f;
+    self.outlayBtn.layer.cornerRadius = 10.0f;
 }
 
 @end

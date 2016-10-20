@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoMamDeTail : UIView
+@interface MoMamDeTail : UIView <UITextFieldDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UIView *detailView;

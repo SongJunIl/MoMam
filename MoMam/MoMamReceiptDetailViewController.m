@@ -25,10 +25,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UIColor *receiptBackgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"woodImage.jpg"]];
     [self.view setBackgroundColor:receiptBackgroundColor];
-    
     self.receiptView.backgroundColor= [UIColor clearColor];
    
 }
@@ -68,7 +66,8 @@
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@"accountBookNumber==%f AND selectCalendarDay == %@",self.orderNumber.text.doubleValue,self.selectCalendarDay.text];
     [fetchRequest setPredicate:predicate];
     accountBook=[[self.context executeFetchRequest:fetchRequest error:nil]lastObject];
-    [accountBook setPrice:@(self.priceText.text.intValue)];
+   
+    [accountBook setPrice: @([self.priceText.text stringByReplacingOccurrencesOfString:@"," withString:@""].intValue)];
     if(accountBook.useKinds.intValue == 1){
     [accountBook setIncomeText:self.classification.text];
     [accountBook setIncomeHistory:self.history.text];
@@ -101,5 +100,9 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+-(NSString *)labelTextStyle:(NSNumber*)labelText{
+    NSString *label = [NSNumberFormatter localizedStringFromNumber:labelText numberStyle:NSNumberFormatterDecimalStyle];
+    return label;
 }
 @end
