@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,47 +17,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money  Management are Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bg0-wi-HZy">
-                                <rect key="frame" x="23" y="249" width="328" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="eiH-wz-G5Q"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MoMom" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="23" y="198" width="328" height="43"/>
+                                <rect key="frame" x="125" y="145" width="124.5" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="zhj-4F-cJt"/>
+                                    <constraint firstAttribute="height" constant="51" id="6Dh-vU-RPl"/>
+                                    <constraint firstAttribute="width" constant="124.5" id="Q2m-Rc-bbx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money  Management are Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bg0-wi-HZy">
+                                <rect key="frame" x="68" y="212" width="239.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="fLi-kr-Ra1"/>
+                                    <constraint firstAttribute="width" constant="239.5" id="uvI-8t-uCq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="ooY-Er-Jvo">
-                                <rect key="frame" x="63" y="335" width="248" height="158"/>
+                                <rect key="frame" x="25" y="279" width="324" height="242"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="242" id="CN7-Ez-y6W"/>
+                                    <constraint firstAttribute="width" constant="324" id="pmN-Nu-A9D"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.41960784309999999" green="0.87450980389999999" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Bg0-wi-HZy" secondAttribute="trailing" constant="8" id="0PN-s7-zoP"/>
-                            <constraint firstItem="Bg0-wi-HZy" firstAttribute="centerX" secondItem="ooY-Er-Jvo" secondAttribute="centerX" id="0yh-Fl-7O1"/>
-                            <constraint firstItem="Bg0-wi-HZy" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="7" id="HGa-6b-Xod"/>
-                            <constraint firstItem="ooY-Er-Jvo" firstAttribute="top" secondItem="Bg0-wi-HZy" secondAttribute="bottom" constant="65" id="M80-N8-Ipd"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="7" id="Moa-zo-wQS"/>
-                            <constraint firstItem="Bg0-wi-HZy" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="8" id="Vwv-KA-krq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GJd-Yh-RWb" secondAttribute="trailing" constant="8" id="n2j-GD-Ecb"/>
-                            <constraint firstItem="ooY-Er-Jvo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="47" id="qef-07-qI0"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="178" id="tCj-Bp-Pmq"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="ooY-Er-Jvo" secondAttribute="bottom" constant="174" id="uP8-uT-3Fk"/>
+                            <constraint firstItem="Bg0-wi-HZy" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="16" id="DzK-zS-bl9"/>
+                            <constraint firstItem="ooY-Er-Jvo" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-0.5" id="VnS-hg-Lgs"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="125" id="YtU-ib-74a"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-0.25" id="a3g-9c-0O3"/>
+                            <constraint firstItem="Bg0-wi-HZy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="0.25" id="b9u-4g-P6i"/>
+                            <constraint firstItem="ooY-Er-Jvo" firstAttribute="top" secondItem="Bg0-wi-HZy" secondAttribute="bottom" constant="46" id="cfP-wf-ptj"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-417.5" y="318.5"/>
+            <point key="canvasLocation" x="-520.5" y="332.5"/>
         </scene>
     </scenes>
     <resources>

@@ -21,19 +21,22 @@
                             <constraint firstAttribute="width" constant="45" id="wa8-pU-b09"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="분류" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKu-7X-qoi">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="분류" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKu-7X-qoi">
                         <rect key="frame" x="42" y="0.0" width="46" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="3E8-KH-hvW"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="내역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agp-hb-1AJ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내역" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agp-hb-1AJ">
                         <rect key="frame" x="87" y="0.0" width="100" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.43607772435897441" green="0.43607772435897441" blue="0.43607772435897441" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="금액" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRZ-oo-ETO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금액" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRZ-oo-ETO">
                         <rect key="frame" x="186" y="0.0" width="126" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,9 +44,23 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="UKu-7X-qoi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="34" id="2Ve-ba-OyG"/>
+                    <constraint firstItem="HRZ-oo-ETO" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="BUj-al-9ww"/>
                     <constraint firstItem="mKh-i0-rdp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="EHy-yp-QJz"/>
+                    <constraint firstAttribute="trailing" secondItem="agp-hb-1AJ" secondAttribute="trailing" constant="133" id="JKH-VY-LQk"/>
+                    <constraint firstAttribute="trailing" secondItem="HRZ-oo-ETO" secondAttribute="trailing" constant="8" id="TSr-tu-9vq"/>
                     <constraint firstAttribute="bottomMargin" secondItem="mKh-i0-rdp" secondAttribute="bottom" constant="-8" id="Z37-9j-Pv7"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="UKu-7X-qoi" secondAttribute="bottom" constant="-8" id="bh6-41-tgQ"/>
+                    <constraint firstItem="agp-hb-1AJ" firstAttribute="leading" secondItem="mKh-i0-rdp" secondAttribute="trailing" constant="42" id="bs5-rF-Hc9"/>
+                    <constraint firstAttribute="bottom" secondItem="agp-hb-1AJ" secondAttribute="bottom" id="dAr-TA-Izx"/>
+                    <constraint firstAttribute="bottom" secondItem="HRZ-oo-ETO" secondAttribute="bottom" id="fxT-0H-2Vl"/>
+                    <constraint firstItem="UKu-7X-qoi" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="gWw-eU-pAt"/>
+                    <constraint firstItem="agp-hb-1AJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nXe-wu-u0l"/>
+                    <constraint firstItem="agp-hb-1AJ" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="o78-eT-DHv"/>
+                    <constraint firstItem="HRZ-oo-ETO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pCg-7z-QM8"/>
+                    <constraint firstItem="UKu-7X-qoi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="tGu-Vf-S0n"/>
                     <constraint firstItem="mKh-i0-rdp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="wxQ-JH-x6g"/>
+                    <constraint firstItem="HRZ-oo-ETO" firstAttribute="leading" secondItem="UKu-7X-qoi" secondAttribute="trailing" constant="98" id="yT9-6b-Kns"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

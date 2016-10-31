@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoMamMainViewController">
@@ -64,22 +65,19 @@
                         <constraint firstItem="QOe-15-S7q" firstAttribute="top" secondItem="ale-JV-23E" secondAttribute="top" constant="20" id="pxg-6x-Isz"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuG-h1-GZF" customClass="MoMamDeTail">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHn-bd-EsJ" customClass="MoMamCalendarView">
+                    <rect key="frame" x="0.0" y="115" width="375" height="333.5"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kmi-0z-2ST">
+                    <rect key="frame" x="0.0" y="456.5" width="375" height="161.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuG-h1-GZF" customClass="MoMamDeTail">
                     <rect key="frame" x="0.0" y="50" width="375" height="65"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="1Xk-ac-Lu2"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHn-bd-EsJ" customClass="MoMamCalendarView">
-                    <rect key="frame" x="0.0" y="115" width="375" height="343"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="343" id="f3m-uH-2Tn"/>
-                    </constraints>
-                </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kmi-0z-2ST">
-                    <rect key="frame" x="0.0" y="466" width="375" height="152"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -99,6 +97,7 @@
                 <constraint firstItem="ale-JV-23E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="abr-Am-a2b"/>
                 <constraint firstItem="FHn-bd-EsJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cZJ-rk-ibd"/>
                 <constraint firstItem="nuG-h1-GZF" firstAttribute="top" secondItem="ale-JV-23E" secondAttribute="bottom" id="caf-FC-70J"/>
+                <constraint firstItem="FHn-bd-EsJ" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.5" id="d03-1v-h3i"/>
                 <constraint firstItem="nuG-h1-GZF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dB8-qc-IqJ"/>
                 <constraint firstAttribute="trailing" secondItem="ale-JV-23E" secondAttribute="trailing" id="dfu-0r-QQy"/>
                 <constraint firstAttribute="trailing" secondItem="ale-JV-23E" secondAttribute="trailing" id="eRr-Ut-zSx"/>
@@ -110,6 +109,15 @@
                 <constraint firstItem="ale-JV-23E" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ym9-19-PqE"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="HVj-vc-VMs"/>
+                    <exclude reference="IK9-SF-cwh"/>
+                    <exclude reference="UUT-d6-31V"/>
+                    <exclude reference="caf-FC-70J"/>
+                    <exclude reference="dB8-qc-IqJ"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="110.5" y="211.5"/>
         </view>
     </objects>

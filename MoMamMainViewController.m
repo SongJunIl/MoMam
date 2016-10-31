@@ -28,7 +28,7 @@
 
 @implementation MoMamMainViewController{
     AccountBook *accountBook;
-    MoMamCalendarTableViewCell *cell;
+    MoMamCalendarTableViewCell *cells;
     int incomePrice;
     int incomeMoneys;
     int moneyOutlays;
@@ -46,6 +46,7 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                                     NSCalendarUnitMonth | NSCalendarUnitYear fromDate:today];
     addDetailViewController.selectCalendarDay.text = [NSString stringWithFormat:@"%ld/%ld/%ld", (long)components.year,(long)components.month,(long)components.day];
+    
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -60,11 +61,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self initCoreData];
-    [self.mainTableView reloadData];
     [self setupLabelDataInit];
-    
+    [self.mainTableView reloadData];
+   
 }
-
 -(void)viewDidAppear:(BOOL)animated{
     [self setupLabelTextSetting];
 }
@@ -72,8 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegateAndDataSourceSetting];
-    
-    
+
     self.calendarTitle.text = @"MoMam";
     UINib *nib = [UINib nibWithNibName:@"MoMamCalendarTableViewCell" bundle:nil];
     [self.mainTableView registerNib:nib forCellReuseIdentifier:@"MoMamCalendarTableViewCell"];
@@ -91,19 +90,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
+    cells = [tableView dequeueReusableCellWithIdentifier:@"MoMamCalendarTableViewCell" forIndexPath:indexPath];
     accountBook = [self.accountBookArray objectAtIndex:indexPath.row];
-    cell.price.text = [self labelTextStyle:accountBook.price];
-    
-    if(accountBook.useKinds.intValue == 1){
-        cell.classification.text = accountBook.incomeText;
-        cell.history.text = accountBook.selectCalendarDay;
-    }else if(accountBook.useKinds.intValue == 2){
-        cell.classification.text = accountBook.outlayText;
-        cell.history.text = accountBook.selectCalendarDay;
-        cell.classification.textColor = [UIColor redColor];
+    cells.price.text = [self labelTextStyle:accountBook.price];
+    if(accountBook.incomeText != nil){
+        cells.classification.text = accountBook.incomeText;
+        cells.history.text = accountBook.selectCalendarDay;
+        if(cells.classification.textColor == [UIColor redColor]){
+            cells.classification.textColor = [UIColor grayColor];
+        }
+    }else {
+        cells.classification.text = accountBook.outlayText;
+        cells.history.text = accountBook.selectCalendarDay;
+        if(accountBook.outlayKinds >0){
+            cells.classification.textColor = [UIColor redColor];
+        }
     }
-    return cell;
+    return cells;
 }
 
 
@@ -117,12 +120,12 @@
     //선택한 날짜
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                             NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
-    calendarDetailViewController.selectCalendarDay.text = [NSString stringWithFormat:@"%ld/%ld/%ld", components.year,(long)components.month,(long)components.day];
+    calendarDetailViewController.selectCalendarDay.text = [NSString stringWithFormat:@"%ld/%ld/%ld", (long)components.year,(long)components.month,(long)components.day];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     self.dictinoary =(NSMutableDictionary*)[self.accountBookArray objectAtIndex:indexPath.row];
-   
+ 
     if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 1){
             incomePrice += [[self.dictinoary valueForKey:@"price"]intValue];
             self.incomeTotal = @(incomePrice);
@@ -159,6 +162,7 @@
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
     [self loadAccountBookData];
+    
 }
 
 - (void)loadAccountBookData{
@@ -170,16 +174,16 @@
     NSDate *today = [fs today];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                                     NSCalendarUnitMonth | NSCalendarUnitYear fromDate:today];
-    NSString *day = [NSString stringWithFormat:@"%ld/%ld", components.year,(long)components.month];
+    NSString *day = [NSString stringWithFormat:@"%ld/%ld", (long)components.year,(long)components.month];
     NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",day];
     [fetch setPredicate:predicate];
-    
+    NSLog(@"%@",day);
     NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
     if (error) {
         NSLog(@"Failed to fetch objects: %@", [error description]);
     }
     self.accountBookArray = [reuslt mutableCopy];
-   
+    
 }
 -(void)setupLabelDataInit{
     incomePrice = 0;
@@ -194,12 +198,12 @@
     self.cardOutlay  =@(0);
 }
 -(void)setupLabelTextSetting{
-//    NSString *test = [NSNumberFormatter localizedStringFromNumber:@(self.incomeTotal.intValue) numberStyle:NSNumberFormatterDecimalStyle];
-    self.detailView.income.text = [self labelTextStyle:self.incomeTotal];
-    self.detailView.totalOutlay.text =[self labelTextStyle:self.outlayTotal];
-    self.detailView.moneyOutlay.text = [self labelTextStyle:self.self.moneyOutlay];
-    self.detailView.cardOutlay.text = [self labelTextStyle:self.self.cardOutlay];
-    self.detailView.money.text = [self labelTextStyle:self.incomeMoney];
+ //   NSString *test = [NSNumberFormatter localizedStringFromNumber:@(self.incomeTotal.intValue) numberStyle:NSNumberFormatterDecimalStyle];
+    self.detailView.incomeValueLabel.text = [self labelTextStyle:self.incomeTotal];
+    self.detailView.outlayTotalValueLabel.text =[self labelTextStyle:self.outlayTotal];
+    self.detailView.outlayCashValueLabel.text = [self labelTextStyle:self.self.moneyOutlay];
+    self.detailView.outlayCardValueLabel.text = [self labelTextStyle:self.self.cardOutlay];
+    self.detailView.remainedCashValueLabel.text = [self labelTextStyle:self.incomeMoney];
 }
 - (void)delegateAndDataSourceSetting{
     self.calendarView.calendarViewc.dataSource = self;
@@ -210,5 +214,25 @@
 -(NSString *)labelTextStyle:(NSNumber*)labelText{
     NSString *label = [NSNumberFormatter localizedStringFromNumber:labelText numberStyle:NSNumberFormatterDecimalStyle];
     return label;
+}
+- (void)calendarCurrentMonthDidChange:(FSCalendar *)calendar FSCalendarDeprecated(-calendarCurrentPageDidChange:){
+    NSError *error = nil;
+    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+    fetch.entity = [NSEntityDescription entityForName:@"AccountBook"
+                               inManagedObjectContext:self.context];
+   
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
+                                    NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[calendar currentPage]];
+    NSString *day = [NSString stringWithFormat:@"%ld/%ld", (long)components.year,(long)components.month];
+    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",day];
+    [fetch setPredicate:predicate];
+    NSLog(@"날짜 바뀜%@",day);
+    NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
+    if (error) {
+        NSLog(@"Failed to fetch objects: %@", [error description]);
+    }
+    self.accountBookArray = [reuslt mutableCopy];
+    [self.mainTableView reloadData];
+
 }
 @end

@@ -66,9 +66,9 @@
     if(editingStyle == UITableViewCellEditingStyleDelete){
         accountBook = [self.accountBookArray objectAtIndex:indexPath.row];
         [self.context deleteObject:accountBook];
-        [self dataSave];
         [self.accountBookArray removeObjectAtIndex:indexPath.row];
         [self.calendarDetailTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self dataSave];
     }
 }
 -(void)dataSave{

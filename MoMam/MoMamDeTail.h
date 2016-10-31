@@ -8,20 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoMamDeTail : UIView <UITextFieldDelegate>
-
-
-@property (strong, nonatomic) IBOutlet UIView *detailView;
-//수입
-@property (weak, nonatomic) IBOutlet UILabel *income;
-//현금잔액
-@property (weak, nonatomic) IBOutlet UILabel *money;
-//총소비
-@property (weak, nonatomic) IBOutlet UILabel *totalOutlay;
-//현금소비
-@property (weak, nonatomic) IBOutlet UILabel *moneyOutlay;
-//카드소비
-@property (weak, nonatomic) IBOutlet UILabel *cardOutlay;
-
-
+@interface MoMamDeTail : UIView
+@property (nonatomic, strong) UILabel *incomeValueLabel;
+@property (nonatomic, strong) UILabel *remainedCashValueLabel;
+@property (nonatomic, strong) UILabel *outlayTotalValueLabel;
+@property (nonatomic, strong) UILabel *outlayCashValueLabel;
+@property (nonatomic, strong) UILabel *outlayCardValueLabel;
 @end
