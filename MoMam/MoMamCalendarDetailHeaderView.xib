@@ -16,13 +16,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwQ-51-UwI">
-                    <rect key="frame" x="0.0" y="0.0" width="37" height="22"/>
+                    <rect key="frame" x="0.0" y="-2" width="37" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="37" id="00H-wg-DQi"/>
-                        <constraint firstAttribute="height" constant="22" id="VRI-UZ-mad"/>
+                        <constraint firstAttribute="height" constant="26" id="VRI-UZ-mad"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="Edit"/>
+                    <state key="normal" title="수정"/>
                     <connections>
                         <action selector="toggleEditingMode:" destination="-1" eventType="touchUpInside" id="ls2-8l-Z1J"/>
                     </connections>
@@ -31,8 +31,8 @@
             <color key="backgroundColor" red="0.8994991987179487" green="0.8994991987179487" blue="0.8994991987179487" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="gwQ-51-UwI" firstAttribute="leading" secondItem="v0B-FW-Qz2" secondAttribute="leading" id="GR6-mk-hiz"/>
-                <constraint firstAttribute="bottom" secondItem="gwQ-51-UwI" secondAttribute="bottom" id="qfk-2R-6MR"/>
-                <constraint firstItem="gwQ-51-UwI" firstAttribute="top" secondItem="v0B-FW-Qz2" secondAttribute="top" id="zrJ-oW-uGZ"/>
+                <constraint firstAttribute="bottom" secondItem="gwQ-51-UwI" secondAttribute="bottom" constant="-2" id="qfk-2R-6MR"/>
+                <constraint firstItem="gwQ-51-UwI" firstAttribute="top" secondItem="v0B-FW-Qz2" secondAttribute="top" constant="-2" id="zrJ-oW-uGZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

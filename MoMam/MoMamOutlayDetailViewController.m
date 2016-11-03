@@ -8,6 +8,7 @@
 
 #import "MoMamOutlayDetailViewController.h"
 #import "AccountBook.h"
+#import "MoMamAddButtonDetailViewController.h"
 @import CoreData;
 @interface MoMamOutlayDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *cashBtn;
@@ -20,6 +21,7 @@
 @implementation MoMamOutlayDetailViewController{
     AccountBook *acc;
     double order;
+    UIViewController *presentingViewController;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,19 +42,21 @@
     [self outlayInfo];
     acc.outlayKinds = [NSNumber numberWithInt:1];
     [self dataSave];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self backPresentingView];
+    
 }
 - (IBAction)checkCardBtn:(id)sender {
     [self outlayInfo];
     acc.outlayKinds = [NSNumber numberWithInt:2];
     [self dataSave];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self backPresentingView];
+    
 }
 - (IBAction)cardBtn:(id)sender {
     [self outlayInfo];
     acc.outlayKinds = [NSNumber numberWithInt:3];
     [self dataSave];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self backPresentingView];
 }
 
 -(void)outlayInfo{
@@ -93,7 +97,7 @@
         NSLog(@"Error: %@", [error localizedFailureReason]);
     else
     {
-        _context = [[NSManagedObjectContext alloc] init];
+        _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
     [self loadAccountBookData];
@@ -118,5 +122,11 @@
     self.checkCardBtn.layer.cornerRadius = 10.0f;
     self.cardBtn.layer.cornerRadius = 10.0f;
 }
+-(void)backPresentingView{
+    presentingViewController = [self presentingViewController];
+    [self dismissViewControllerAnimated:NO completion:^(){
+        [presentingViewController dismissViewControllerAnimated:NO completion:nil];
+    }];
 
+}
 @end

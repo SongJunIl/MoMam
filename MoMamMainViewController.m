@@ -23,6 +23,8 @@
 @property (nonatomic,strong) NSNumber *moneyOutlay;
 @property (nonatomic,strong) NSNumber *cardOutlay;
 @property (nonatomic,strong) NSNumber *incomeMoney;
+@property (nonatomic,strong) NSString *day;
+@property (nonatomic,strong) NSString *realday;
 @property (nonatomic,strong) NSMutableDictionary *dictinoary;
 @end
 
@@ -34,6 +36,7 @@
     int moneyOutlays;
     int outlayPrice;
     int cardOutlays;
+    
 }
 
 - (IBAction)addButtonTapped:(id)sender {
@@ -62,8 +65,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [self initCoreData];
     [self setupLabelDataInit];
+    [self setupMainLabelValueSetting];
     [self.mainTableView reloadData];
-   
 }
 -(void)viewDidAppear:(BOOL)animated{
     [self setupLabelTextSetting];
@@ -106,7 +109,9 @@
             cells.classification.textColor = [UIColor redColor];
         }
     }
+  
     return cells;
+    
 }
 
 
@@ -124,28 +129,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.dictinoary =(NSMutableDictionary*)[self.accountBookArray objectAtIndex:indexPath.row];
- 
-    if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 1){
-            incomePrice += [[self.dictinoary valueForKey:@"price"]intValue];
-            self.incomeTotal = @(incomePrice);
-            NSLog(@"총 수입 : %d",incomePrice);
-    }else if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 2 ){
-            outlayPrice += [[self.dictinoary valueForKey:@"price"] intValue];
-            self.outlayTotal = @(outlayPrice);
-            NSLog(@"총 소비 : %d",outlayPrice);
-        if([[self.dictinoary valueForKey:@"outlayKinds"] intValue] == 1 ){
-            moneyOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
-            self.moneyOutlay =@(moneyOutlays);
-            NSLog(@"현금 총소비 %d",moneyOutlays);
-        }else{
-            cardOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
-            self.cardOutlay =@(cardOutlays);
-            NSLog(@"카드 총소비 %d",cardOutlays);
-        }
-    }
-    incomeMoneys = incomePrice - outlayPrice;
-    self.incomeMoney =@(incomeMoneys);
+    
 }
 
 -(void)initCoreData{
@@ -158,11 +142,10 @@
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]){
         NSLog(@"Error: %@", [error localizedFailureReason]);
     }else{
-        _context = [[NSManagedObjectContext alloc] init];
+        _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
     [self loadAccountBookData];
-    
 }
 
 - (void)loadAccountBookData{
@@ -174,16 +157,20 @@
     NSDate *today = [fs today];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                                     NSCalendarUnitMonth | NSCalendarUnitYear fromDate:today];
-    NSString *day = [NSString stringWithFormat:@"%ld/%ld", (long)components.year,(long)components.month];
-    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",day];
+    self.realday = [NSString stringWithFormat:@"%ld/%ld", (long)components.year,(long)components.month];
+    NSPredicate *predicate;
+    if(self.day != nil){
+    predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",self.day];
     [fetch setPredicate:predicate];
-    NSLog(@"%@",day);
+    }else{
+    predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",self.realday];
+    [fetch setPredicate:predicate];
+    }
     NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
     if (error) {
         NSLog(@"Failed to fetch objects: %@", [error description]);
     }
     self.accountBookArray = [reuslt mutableCopy];
-    
 }
 -(void)setupLabelDataInit{
     incomePrice = 0;
@@ -198,11 +185,10 @@
     self.cardOutlay  =@(0);
 }
 -(void)setupLabelTextSetting{
- //   NSString *test = [NSNumberFormatter localizedStringFromNumber:@(self.incomeTotal.intValue) numberStyle:NSNumberFormatterDecimalStyle];
     self.detailView.incomeValueLabel.text = [self labelTextStyle:self.incomeTotal];
     self.detailView.outlayTotalValueLabel.text =[self labelTextStyle:self.outlayTotal];
-    self.detailView.outlayCashValueLabel.text = [self labelTextStyle:self.self.moneyOutlay];
-    self.detailView.outlayCardValueLabel.text = [self labelTextStyle:self.self.cardOutlay];
+    self.detailView.outlayCashValueLabel.text = [self labelTextStyle:self.moneyOutlay];
+    self.detailView.outlayCardValueLabel.text = [self labelTextStyle:self.cardOutlay];
     self.detailView.remainedCashValueLabel.text = [self labelTextStyle:self.incomeMoney];
 }
 - (void)delegateAndDataSourceSetting{
@@ -223,16 +209,45 @@
    
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |
                                     NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[calendar currentPage]];
-    NSString *day = [NSString stringWithFormat:@"%ld/%ld", (long)components.year,(long)components.month];
-    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",day];
+     self.day = [NSString stringWithFormat:@"%ld/%ld", (long)components.year,(long)components.month];
+NSPredicate *predicate =[NSPredicate predicateWithFormat:@"SELF.selectCalendarDay CONTAINS %@",self.day];
     [fetch setPredicate:predicate];
-    NSLog(@"날짜 바뀜%@",day);
+    NSLog(@"날짜 바뀜%@",self.day);
     NSArray *reuslt = [self.context executeFetchRequest:fetch error:&error];
     if (error) {
         NSLog(@"Failed to fetch objects: %@", [error description]);
     }
     self.accountBookArray = [reuslt mutableCopy];
+    
+    [self setupLabelDataInit];
+    [self setupMainLabelValueSetting];
+    [self setupLabelTextSetting];
     [self.mainTableView reloadData];
-
+}
+- (void)setupMainLabelValueSetting{
+    for(int i=0; i<self.accountBookArray.count; i++){
+    self.dictinoary =(NSMutableDictionary*)[self.accountBookArray objectAtIndex:i];
+    
+    if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 1){
+        incomePrice += [[self.dictinoary valueForKey:@"price"]intValue];
+        self.incomeTotal = @(incomePrice);
+        NSLog(@"총 수입 : %d",incomePrice);
+    }else if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 2 ){
+        outlayPrice += [[self.dictinoary valueForKey:@"price"] intValue];
+        self.outlayTotal = @(outlayPrice);
+        NSLog(@"총 소비 : %d",outlayPrice);
+        if([[self.dictinoary valueForKey:@"outlayKinds"] intValue] == 1 ){
+            moneyOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.moneyOutlay =@(moneyOutlays);
+            NSLog(@"현금 총소비 %d",moneyOutlays);
+        }else{
+            cardOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.cardOutlay =@(cardOutlays);
+            NSLog(@"카드 총소비 %d",cardOutlays);
+        }
+    }
+}
+    incomeMoneys = incomePrice - outlayPrice;
+    self.incomeMoney =@(incomeMoneys);
 }
 @end

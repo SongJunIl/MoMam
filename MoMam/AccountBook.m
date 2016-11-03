@@ -7,10 +7,7 @@
 //
 
 #import "AccountBook.h"
-
+@import CoreData;
 @implementation AccountBook
-
-
-
 
 @end

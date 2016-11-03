@@ -91,6 +91,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [self initCoreData];
     [self setupLabelDataInit];
+    [self setupCalendarDetailLabelValueSetting];
     [self.calendarDetailTableView reloadData];
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -122,6 +123,9 @@
     if(accountBook.useKinds.intValue == 1){
         cell.classification.text = accountBook.incomeText;
         cell.history.text = accountBook.incomeHistory;
+        if(cell.classification.textColor == [UIColor redColor]){
+            cell.classification.textColor = [UIColor grayColor];
+        }
     }else if(accountBook.useKinds.intValue ==2 ){
         cell.classification.text = accountBook.outlayText;
         cell.history.text = accountBook.outlayHistory;
@@ -148,32 +152,6 @@
     }
 
 }
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.dictinoary =(NSMutableDictionary*)[self.accountBookArray objectAtIndex:indexPath.row];
-    
-    if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 1){
-        incomePrice += [[self.dictinoary valueForKey:@"price"]intValue];
-        self.incomeTotal = @(incomePrice);
-        NSLog(@"총 수입 : %d",incomePrice);
-    }else if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 2 ){
-        outlayPrice += [[self.dictinoary valueForKey:@"price"] intValue];
-        self.outlayTotal = @(outlayPrice);
-        NSLog(@"총 소비 : %d",outlayPrice);
-        if([[self.dictinoary valueForKey:@"outlayKinds"] intValue] == 1 ){
-            moneyOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
-            self.moneyOutlayInfo =@(moneyOutlays);
-            NSLog(@"현금 총소비 %d",moneyOutlays);
-        }else{
-            cardOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
-            self.cardOutlayInfo =@(cardOutlays);
-            NSLog(@"카드 총소비 %d",cardOutlays);
-        }
-    }
-
-}
-
-
 -(void)initCoreData
 {
     NSError *error;
@@ -186,7 +164,7 @@
         NSLog(@"Error: %@", [error localizedFailureReason]);
     else
     {
-        _context = [[NSManagedObjectContext alloc] init];
+        _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
    [self loadAccountBookData];
@@ -241,5 +219,28 @@
     NSString *label = [NSNumberFormatter localizedStringFromNumber:labelText numberStyle:NSNumberFormatterDecimalStyle];
     return label;
 }
-
+-(void)setupCalendarDetailLabelValueSetting{
+    for(int i=0; i<self.accountBookArray.count; i++){
+    self.dictinoary =(NSMutableDictionary*)[self.accountBookArray objectAtIndex:i];
+    
+    if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 1){
+        incomePrice += [[self.dictinoary valueForKey:@"price"]intValue];
+        self.incomeTotal = @(incomePrice);
+        NSLog(@"총 수입 : %d",incomePrice);
+    }else if([[self.dictinoary valueForKey:@"useKinds"] intValue] == 2 ){
+        outlayPrice += [[self.dictinoary valueForKey:@"price"] intValue];
+        self.outlayTotal = @(outlayPrice);
+        NSLog(@"총 소비 : %d",outlayPrice);
+        if([[self.dictinoary valueForKey:@"outlayKinds"] intValue] == 1 ){
+            moneyOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.moneyOutlayInfo =@(moneyOutlays);
+            NSLog(@"현금 총소비 %d",moneyOutlays);
+        }else{
+            cardOutlays += [[self.dictinoary valueForKey:@"price"]intValue];
+            self.cardOutlayInfo =@(cardOutlays);
+            NSLog(@"카드 총소비 %d",cardOutlays);
+        }
+    }
+}
+}
 @end

@@ -92,7 +92,7 @@
         NSLog(@"Error: %@", [error localizedFailureReason]);
     else
     {
-        _context = [[NSManagedObjectContext alloc] init];
+        _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_context setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
     
